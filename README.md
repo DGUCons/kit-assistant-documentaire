@@ -18,6 +18,26 @@ Il est utilisé en production sur trois sociétés réelles : plus de 3 100 docu
 
 Chaque document est lu une seule fois, puis qualifié, renommé, classé et indexé dans une petite base locale. Ensuite, vos recherches interrogent l'index et répondent en quelques secondes, sans jamais relire les documents.
 
+## L'architecture cible
+
+**Le point le plus important de toute l'installation :** l'assistant s'exécute à la racine d'un dossier unique qui contient TOUTES vos structures. C'est cette vue d'ensemble qui lui permet de router chaque document vers la bonne société et de tenir un index unique.
+
+```
+Documents/                       ← Claude Code s'ouvre ICI, à la racine
+├── CLAUDE.md                    ← les instructions permanentes
+├── 00_CONTEXTE/                 ← contexte, règles, journal, index
+├── SOCIETE_EXPLOITATION/        ← votre société principale
+│   ├── a_trier/   a_valider/   a_supprimer/   archives/
+│   ├── 01_Societe/
+│   └── 02_Comptabilite/2026/factures/2026-07/
+├── HOLDING/                     ← si vous en avez une
+│   └── (même structure)
+└── SCI/                         ← si vous en avez une
+    └── (même structure)
+```
+
+Une seule structure ? Même principe, avec un seul dossier de société. L'installation guidée (DEMARRAGE.md) crée tout cela pour vous, aux vrais noms de vos structures.
+
 ## Démarrer en 3 étapes
 
 1. **Installez Claude Code** et connectez-vous avec votre compte Claude. Le pas à pas illustré, pour Windows et macOS, est dans [INSTALLATION.md](INSTALLATION.md).

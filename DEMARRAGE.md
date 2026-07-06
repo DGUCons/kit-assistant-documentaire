@@ -33,6 +33,8 @@ Remplis `modele/00_CONTEXTE/CONTEXTE_SOCIETE.md` avec les réponses. Relis-le à
 
 ### Étape 3 : l'installation
 
+Principe non négociable : un SEUL dossier racine contient toutes les structures, et c'est depuis cette racine que tu travailleras à chaque session. Explique-le à l'utilisateur en une phrase : c'est la vue d'ensemble qui permet de router chaque document vers la bonne société et de tenir un index unique.
+
 Avec l'accord de l'utilisateur :
 
 1. Crée le dossier documentaire à l'emplacement choisi.

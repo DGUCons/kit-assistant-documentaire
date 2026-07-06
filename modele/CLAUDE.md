@@ -23,7 +23,7 @@ Tu ne remplaces ni l'expert-comptable, ni l'avocat, ni le fiscaliste. Sur toute 
 
 ## Emplacements
 
-- Dossier documentaire : [CHEMIN CHOISI À L'INSTALLATION]
+- Dossier documentaire : [CHEMIN CHOISI À L'INSTALLATION]. C'est la racine unique qui contient toutes les structures : les sessions de travail s'ouvrent toujours ici, jamais dans un sous-dossier.
 - Dossiers exclus, à ne JAMAIS lire : [LISTE OU "aucun"]
 - Chaque structure a ses dossiers de travail : `a_trier/` (dépôts), `a_valider/` (doutes), `a_supprimer/` (doublons et inutiles, jamais effacés), `archives/`.
 
