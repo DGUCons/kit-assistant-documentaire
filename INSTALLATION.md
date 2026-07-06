@@ -34,7 +34,7 @@ En cas de doute sur l'installation, la documentation officielle et à jour est i
 1. En haut de la page GitHub du kit, cliquez sur le bouton vert **« Code »**, puis **« Download ZIP »**.
 2. Dézippez le dossier où vous voulez (le Bureau convient très bien pour commencer : l'assistant vous proposera ensuite l'emplacement définitif de vos documents).
 
-Les habitués de git peuvent préférer : `git clone https://github.com/serdar6684/kit-assistant-documentaire.git`
+Les habitués de git peuvent préférer : `git clone https://github.com/DGUCons/kit-assistant-documentaire.git`
 
 ## 4. Le premier lancement
 
