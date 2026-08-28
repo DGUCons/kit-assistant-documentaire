@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.1 (2026-08-28)
+
+- Schéma d'architecture refait : garde-fous exacts (corbeille réversible, jamais « supprimé »), reprise « Reprenons », chiffres à jour ; source HTML du schéma versionnée (docs/captures/architecture.html)
+
 ## v2.0.0 (2026-08-28)
 
 Refonte complète : l'installation tient désormais en **une seule phrase à coller**, plus aucun téléchargement manuel.

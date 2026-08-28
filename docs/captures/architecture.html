@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; }
+  body {
+    font-family: -apple-system, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(160deg, #f8fafc 0%, #eef6fb 55%, #e6f4fa 100%);
+    color: #0f172a;
+    padding: 52px 60px 40px;
+    display: flex; flex-direction: column;
+  }
+  .kicker { font-size: 19px; letter-spacing: 3.5px; color: #64748b; font-weight: 600; }
+  h1 { font-size: 46px; line-height: 1.16; margin: 14px 0 8px; letter-spacing: -0.5px; }
+  .sub { font-size: 22px; color: #475569; margin-bottom: 34px; }
+  .sub code {
+    background: #0f172a; color: #e0f2fe; border-radius: 8px;
+    padding: 3px 12px; font-size: 18px; font-family: "SF Mono", Menlo, monospace;
+  }
+  .card {
+    background: #ffffff; border: 1px solid #dbe7f0; border-radius: 18px;
+    padding: 26px 28px; box-shadow: 0 6px 18px rgba(15, 42, 74, 0.06);
+    display: flex; align-items: flex-start; gap: 20px;
+  }
+  .num {
+    flex: 0 0 44px; height: 44px; border-radius: 50%;
+    background: linear-gradient(135deg, #0ea5e9, #0284c7); color: #fff;
+    font-size: 23px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+    margin-top: 2px;
+  }
+  .card h2 { font-size: 26px; margin-bottom: 4px; }
+  .card p { font-size: 20px; color: #475569; line-height: 1.35; }
+  .tag {
+    display: inline-block; background: #f1f5f9; border: 1px solid #e2e8f0;
+    border-radius: 8px; padding: 3px 12px; font-family: "SF Mono", Menlo, monospace;
+    font-size: 15px; color: #334155; margin-top: 10px; white-space: nowrap;
+  }
+  .arrow { text-align: center; color: #94a3b8; font-size: 26px; line-height: 1; margin: 12px 0; }
+  .duo { display: flex; gap: 18px; }
+  .duo .card { flex: 1; }
+  .result {
+    background: linear-gradient(135deg, #ecfeff, #dbf4fd); border: 2px solid #67d3f0;
+    border-radius: 18px; padding: 28px 30px; text-align: center; margin-top: 12px;
+  }
+  .result h2 { font-size: 28px; color: #075985; margin-bottom: 6px; }
+  .result .q { font-size: 21px; font-style: italic; color: #334155; }
+  .result .a { font-size: 23px; font-weight: 700; margin-top: 6px; }
+  .stats { text-align: center; margin: 40px 0 30px; }
+  .stats .when { font-size: 18px; letter-spacing: 2.5px; color: #64748b; font-weight: 600; }
+  .stats .figures { font-size: 31px; font-weight: 800; margin-top: 6px; }
+  .rules {
+    border-top: 1px solid #dbe7f0; padding-top: 26px; text-align: center;
+  }
+  .rules .label { font-size: 18px; letter-spacing: 3px; color: #64748b; font-weight: 600; margin-bottom: 8px; }
+  .rules p { font-size: 20px; color: #334155; line-height: 1.5; }
+  footer {
+    margin-top: auto; display: flex; justify-content: space-between;
+    font-size: 19px; color: #64748b; padding-top: 16px;
+  }
+</style>
+</head>
+<body>
+  <div class="kicker">DGU CONSULTING · ARCHITECTURE INDEX-FIRST · V2</div>
+  <h1>Un assistant IA qui ne relit jamais<br>deux fois le même document</h1>
+  <div class="sub">Installation en une phrase à coller · reprise garantie : <code>Reprenons</code></div>
+
+  <div class="card">
+    <div class="num">1</div>
+    <div>
+      <h2>Vous déposez vos documents</h2>
+      <p>factures, contrats, relevés, attestations, en vrac</p>
+    </div>
+    <div class="tag" style="margin-left:auto; margin-top: 14px;">a_trier/</div>
+  </div>
+  <div class="arrow">&#8595;</div>
+
+  <div class="card">
+    <div class="num">2</div>
+    <div>
+      <h2>L'IA lit le contenu réel, une seule fois</h2>
+      <p>société · date · type · émetteur · montants · niveau de confiance</p>
+    </div>
+  </div>
+  <div class="arrow">&#8595;</div>
+
+  <div class="duo">
+    <div class="card">
+      <div class="num">3</div>
+      <div>
+        <h2>Classement</h2>
+        <p>renommé, daté, rangé par société</p>
+        <div class="tag">2026-05_achat_edf_facture-mai.pdf</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="num">4</div>
+      <div>
+        <h2>Indexation</h2>
+        <p>base locale, sans serveur<br>résumé · mots-clés · SHA-256<br>recherche plein texte</p>
+      </div>
+    </div>
+  </div>
+  <div class="arrow">&#8595;</div>
+
+  <div class="result">
+    <h2>Vos recherches interrogent l'index, plus jamais les PDF</h2>
+    <div class="q">« Retrouve l'attestation d'assurance 2024 »</div>
+    <div class="a">Réponse en quelques secondes</div>
+  </div>
+
+  <div class="stats">
+    <div class="when">EN PRODUCTION SUR 3 SOCIÉTÉS · AOÛT 2026</div>
+    <div class="figures">3 100+ documents · 0 doublon résiduel · 0 document fantôme</div>
+  </div>
+
+  <div class="rules">
+    <div class="label">LES GARDE-FOUS</div>
+    <p>jamais de suppression définitive : corbeille réversible · originaux jamais modifiés<br>
+    chaque action journalisée · un doublon n'est mis en corbeille que preuve à l'appui (empreinte SHA-256)<br>
+    banque en lecture seule, toujours</p>
+  </div>
+
+  <footer>
+    <span>Serdar Arikan · DGU Consulting</span>
+    <span>dgu-consulting.fr</span>
+  </footer>
+</body>
+</html>

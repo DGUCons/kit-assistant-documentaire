@@ -16,6 +16,7 @@ kit  arborescence/VOTRE_SOCIETE/a_supprimer/README.md
 kit  arborescence/VOTRE_SOCIETE/a_trier/README.md
 kit  arborescence/VOTRE_SOCIETE/a_valider/README.md
 kit  arborescence/VOTRE_SOCIETE/archives/README.md
+kit  docs/captures/architecture.html
 kit  docs/captures/architecture.png
 kit  docs/faq.md
 kit  docs/mise-a-jour.md
