@@ -2,3 +2,6 @@ Thumbs.db
 .DS_Store
 desktop.ini
 *.tmp
+__pycache__/
+*.pyc
+_comm/

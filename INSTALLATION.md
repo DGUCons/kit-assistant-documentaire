@@ -1,15 +1,13 @@
 # Installation
 
-Trois choses à installer ou préparer : un compte Claude, l'application Claude Code, et ce kit. Comptez 15 minutes. Aucune compétence technique n'est nécessaire.
+Deux choses à préparer : un compte Claude et l'application Claude Code. Comptez 15 minutes. Aucune compétence technique n'est nécessaire, et **vous n'aurez rien d'autre à télécharger** : c'est l'assistant qui récupérera le kit lui-même.
 
 ## 1. Le compte Claude
 
-L'assistant fonctionne avec un abonnement Claude. L'offre **Pro** (environ 20 euros par mois) suffit pour un usage courant.
-
 1. Créez un compte sur [claude.ai](https://claude.ai) si vous n'en avez pas.
-2. Souscrivez l'abonnement Pro (menu de votre compte, section abonnement).
+2. Souscrivez l'abonnement **Pro** (environ 20 euros par mois ; menu de votre compte, section abonnement). Il suffit pour un usage courant ; pour avaler un gros historique plus vite au premier mois, un palier supérieur aide, et vous pourrez redescendre ensuite.
 
-Vous pourrez résilier quand vous voulez ; le kit et vos documents restent chez vous.
+Vous pourrez résilier quand vous voudrez ; le kit et vos documents restent chez vous.
 
 ## 2. Claude Code
 
@@ -19,7 +17,7 @@ Claude Code est l'application qui permet à l'assistant de travailler sur vos fi
 
 1. Rendez-vous sur la page officielle : [claude.com/claude-code](https://claude.com/claude-code)
 2. Téléchargez la version Windows et lancez l'installation (suivant, suivant, terminer).
-3. Ouvrez l'application, connectez-vous avec votre compte Claude (celui de l'étape 1).
+3. Ouvrez l'application et connectez-vous avec votre compte Claude (celui de l'étape 1).
 
 ### macOS
 
@@ -29,24 +27,21 @@ Claude Code est l'application qui permet à l'assistant de travailler sur vos fi
 
 En cas de doute sur l'installation, la documentation officielle et à jour est ici : [code.claude.com/docs](https://code.claude.com/docs). Elle prime sur ce guide si les écrans ont changé.
 
-## 3. Le kit
+## 3. Le premier lancement
 
-1. En haut de la page GitHub du kit, cliquez sur le bouton vert **« Code »**, puis **« Download ZIP »**.
-2. Dézippez le dossier où vous voulez (le Bureau convient très bien pour commencer : l'assistant vous proposera ensuite l'emplacement définitif de vos documents).
-
-Les habitués de git peuvent préférer : `git clone https://github.com/DGUCons/kit-assistant-documentaire.git`
-
-## 4. Le premier lancement
-
-1. Ouvrez Claude Code.
-2. Ouvrez le dossier du kit dézippé (menu d'ouverture de dossier de l'application, ou glissez le dossier dessus).
-3. Collez cette phrase et validez :
+Ouvrez Claude Code, collez cette phrase et validez :
 
 ```
-Lis le fichier DEMARRAGE.md et guide-moi pas à pas.
+Récupère https://raw.githubusercontent.com/DGUCons/kit-assistant-documentaire/main/START.md et suis ces instructions pas à pas.
 ```
 
-L'assistant prend le relais : il vous pose une dizaine de questions sur vos sociétés, crée votre dossier documentaire, et vous propose un premier tri d'essai sur une vingtaine de documents, sous votre contrôle.
+L'assistant prend le relais : il se présente, annonce ses règles, vérifie votre machine, télécharge le kit, puis vous pose ses questions, une à la fois, avec sa recommandation à chaque fois. Si l'assistant vous demande l'autorisation d'accéder au réseau ou de lire des fichiers, c'est normal : accordez-la pour les étapes qu'il vous décrit.
+
+Un conseil : choisissez le modèle le plus capable proposé par votre abonnement (Opus ou supérieur) ; la commande `/model` dans Claude Code permet d'en changer.
+
+## Un autre assistant que Claude ?
+
+Le kit est conçu, optimisé et testé avec Claude Code. La même phrase fonctionne en principe avec OpenAI Codex ou Google Gemini CLI : l'assistant vous préviendra alors honnêtement que son parcours n'a pas été testé, et adaptera ce qui doit l'être. Retours bienvenus.
 
 ## En cas de blocage
 

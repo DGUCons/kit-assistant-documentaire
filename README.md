@@ -2,53 +2,30 @@
 
 Confiez le classement des documents de votre entreprise à un assistant IA, sans jamais perdre le contrôle.
 
-Ce kit installe, en une demi-journée, un assistant capable de lire, classer, renommer, indexer et retrouver l'ensemble de vos documents administratifs : factures, contrats, relevés, attestations, déclarations. Il repose sur un principe simple : des règles strictes posées avant la première action, et un index local pour que chaque document ne soit lu qu'une seule fois.
+Un assistant qui mène l'entretien, cartographie vos documents où qu'ils soient, lit et indexe tout votre historique, vous pose les bonnes questions, puis vous propose un rangement que vous validez. Utilisé en production sur trois sociétés réelles : plus de 3 100 documents indexés, zéro doublon résiduel, zéro document fantôme.
 
-Il est utilisé en production sur trois sociétés réelles : plus de 3 100 documents indexés, zéro doublon résiduel, zéro document fantôme.
+## Installer : une seule phrase à coller
 
-## Pour qui
-
-- Dirigeants de TPE/PME, indépendants, professions libérales, avec une ou plusieurs structures
-- Aucune compétence technique requise : l'assistant vous guide, vous répondez à ses questions
-- Prérequis : un abonnement Claude (l'offre Pro suffit) et vos documents dans un dossier, même en désordre. Surtout en désordre.
-
-## Comment ça marche
-
-![Architecture index-first](docs/captures/architecture.png)
-
-Chaque document est lu une seule fois, puis qualifié, renommé, classé et indexé dans une petite base locale. Ensuite, vos recherches interrogent l'index et répondent en quelques secondes, sans jamais relire les documents.
-
-## L'architecture cible
-
-**Le point le plus important de toute l'installation :** l'assistant s'exécute à la racine d'un dossier unique qui contient TOUTES vos structures. C'est cette vue d'ensemble qui lui permet de router chaque document vers la bonne société et de tenir un index unique.
+1. Installez [Claude Code](https://claude.com/claude-code) et connectez-vous avec votre compte Claude (le pas à pas illustré est dans [INSTALLATION.md](INSTALLATION.md)).
+2. Ouvrez Claude Code et collez ceci :
 
 ```
-Documents/                       ← Claude Code s'ouvre ICI, à la racine
-├── CLAUDE.md                    ← les instructions permanentes
-├── 00_CONTEXTE/                 ← contexte, règles, journal, index
-├── SOCIETE_EXPLOITATION/        ← votre société principale
-│   ├── a_trier/   a_valider/   a_supprimer/   archives/
-│   ├── 01_Societe/
-│   └── 02_Comptabilite/2026/factures/2026-07/
-├── HOLDING/                     ← si vous en avez une
-│   └── (même structure)
-└── SCI/                         ← si vous en avez une
-    └── (même structure)
+Récupère https://raw.githubusercontent.com/DGUCons/kit-assistant-documentaire/main/START.md et suis ces instructions pas à pas.
 ```
 
-Une seule structure ? Même principe, avec un seul dossier de société. L'installation guidée (DEMARRAGE.md) crée tout cela pour vous, aux vrais noms de vos structures.
+C'est tout. **Vous ne téléchargez rien vous-même** : l'assistant récupère le kit, se présente, annonce ses règles, puis mène l'entretien sur vos sociétés (il peut retrouver lui-même leurs informations officielles sur l'annuaire public des entreprises), votre banque, votre cabinet comptable, et tous les endroits où vivent vos documents aujourd'hui. À chaque question, il donne sa recommandation ; à chaque étape, il attend votre accord.
 
-## Démarrer en 3 étapes
+## Ce qui se passe ensuite
 
-1. **Installez Claude Code** et connectez-vous avec votre compte Claude. Le pas à pas illustré, pour Windows et macOS, est dans [INSTALLATION.md](INSTALLATION.md).
-2. **Téléchargez ce kit** : bouton vert « Code » en haut de cette page, puis « Download ZIP ». Dézippez-le où vous voulez. (Les habitués peuvent cloner le dépôt.)
-3. **Ouvrez Claude Code dans le dossier du kit et collez cette phrase :**
+![Schéma : chaque document lu une fois, puis indexé en base locale](docs/captures/architecture.png)
 
-```
-Lis le fichier DEMARRAGE.md et guide-moi pas à pas.
-```
+1. **L'entretien** (15 à 20 minutes) : structures, comptabilité, banques, cartographie complète de vos documents, dossiers à ne jamais lire.
+2. **L'installation** (10 minutes) : votre dossier documentaire unique, ses règles, sa base d'indexation locale, et des commandes prêtes à l'emploi (`/traiter-a-trier`, `/rechercher`, `/point-etat`…).
+3. **L'indexation** (plusieurs sessions) : chaque document est lu **une seule fois**, réellement, puis fiché dans une petite base locale (empreinte, date, type, émetteur, montants, résumé). Une session s'interrompt ? Rien n'est perdu, la suivante reprend exactement où vous en étiez : dites juste « Reprenons ».
+4. **Les questions** : ce que les documents n'ont pas révélé, l'assistant vous le demande, jamais l'inverse.
+5. **Le rangement** : une arborescence propre, proposée d'après votre corpus réel, validée avec vous, appliquée par petits plans réversibles.
 
-C'est tout. L'assistant mène l'entretien : vos sociétés, votre banque, votre cabinet comptable, vos types de documents. Il remplit le dossier de contexte, crée l'arborescence, adapte ses propres instructions, puis vous propose un premier tri supervisé sur une vingtaine de documents.
+Ensuite, au quotidien : vous déposez, il classe, vous tranchez les cas douteux, le journal garde trace de tout. Vos recherches interrogent l'index et répondent en quelques secondes.
 
 ## Les garde-fous
 
@@ -59,23 +36,35 @@ L'assistant travaille sous des règles non négociables, détaillées dans [docs
 - il journalise chaque action, datée, dans un fichier que vous pouvez relire
 - un doublon n'est déclaré doublon que preuve à l'appui (empreinte SHA-256), jamais sur la foi du nom
 - il lit le contenu réel de chaque document avant de le classer
-- il n'invente jamais une information absente des documents, et distingue toujours faits confirmés, hypothèses et points à faire valider
+- il n'invente jamais une information absente des documents
+- les systèmes externes (banque comprise) sont en lecture seule absolue : jamais d'écriture, jamais de virement
 - il ne remplace ni votre expert-comptable, ni votre avocat
+
+Et avant de commencer, il audite même vos réglages d'assistant existants pour vous signaler toute consigne qui entrerait en conflit avec ces règles.
+
+## Ce que vous installez, exactement
+
+Uniquement des fichiers texte lisibles : des instructions en français et quelques petits scripts Python que vous pouvez ouvrir et lire. **Zéro exécutable, zéro installateur, zéro composant caché.** Tout est public et inspectable sur cette page avant la moindre installation. Vos documents restent chez vous ; il n'existe aucun serveur du kit. Licence [MIT](LICENSE) : utilisez, adaptez, partagez librement.
+
+## Compatibilité
+
+Conçu, optimisé et **testé avec Claude Code** (modèle Opus ou supérieur recommandé). Il fonctionne en principe avec d'autres assistants en ligne de commande (OpenAI Codex, Google Gemini CLI) : le kit s'adapte et le signale honnêtement, mais ces parcours n'ont pas été testés (retours bienvenus). Windows et macOS.
 
 ## Le coût, honnêtement
 
-- L'abonnement Claude Pro (environ 20 euros par mois) suffit pour un usage courant.
-- **Le premier passage sur votre historique est le moment coûteux** : chaque document est lu une fois, ce qui prend du temps et consomme une bonne part du quota de votre abonnement. C'est normal, et cela n'arrive qu'une seule fois. L'assistant vous proposera de traiter l'historique par lots, sur plusieurs sessions ; si vous atteignez la limite de votre abonnement, le travail déjà fait est conservé, vous reprenez plus tard.
+- L'abonnement Claude Pro (environ 20 euros par mois) suffit pour un usage courant. Pour traiter un gros historique plus vite au démarrage, un palier supérieur accélère le premier mois, puis vous pouvez redescendre.
+- **Le premier passage sur votre historique est le moment coûteux** : chaque document est lu une fois. C'est long, cela consomme une bonne part du quota de votre abonnement, c'est normal, et cela n'arrive qu'une seule fois. L'assistant traite par lots, sur plusieurs sessions ; si vous atteignez la limite, le travail est conservé, vous reprenez plus tard.
 - Ensuite, seuls les nouveaux documents sont lus : quelques secondes, coût marginal.
 
 ## Aller plus loin
 
-Une fois le système en rythme de croisière, deux extensions ont fait leurs preuves :
+Trois modules optionnels, proposés au bon moment et jamais imposés :
 
-- **Rapprochement bancaire** : si votre banque expose une API (Qonto, par exemple), l'assistant peut rapprocher chaque facture de sa transaction, en lecture seule. Jamais d'écriture, jamais de virement.
-- **Relecture des documents de synthèse** : confrontez le bilan préparé par votre cabinet aux pièces indexées. Un second regard qui a tout sous la main ; la validation reste celle de votre expert-comptable.
+- **Rapprochement bancaire** : si votre banque expose une API (Qonto, par exemple), chaque facture est reliée à son paiement, en lecture seule, jamais d'écriture, jamais de virement.
+- **Cabinet en ligne** : consultez avec l'assistant l'interface de votre cabinet (Dougs, Indy, Pennylane…) en lecture, pour repérer les pièces manquantes (Claude Code uniquement).
+- **Échéancier** : les dates limites repérées dans vos documents (TVA, CFE, assemblées…) surveillées par la commande `/echeances`.
 
-Le retour d'expérience complet, avec l'architecture et les chiffres, est ici : [Un assistant documentaire IA pour trois sociétés](https://dgu-consulting.fr/blog/assistant-documentaire-ia).
+Le retour d'expérience complet, avec l'architecture et les chiffres : [Un assistant documentaire IA pour trois sociétés](https://www.dgu-consulting.fr/blog/assistant-documentaire-ia).
 
 ## Besoin d'aide
 
@@ -85,6 +74,6 @@ Vous voulez le mettre en place sans vous en occuper, l'adapter à votre situatio
 
 Serdar Arikan · [DGU Consulting](https://www.dgu-consulting.fr) · [LinkedIn](https://www.linkedin.com/in/serdar-arikan)
 
-## Licence
+---
 
-[MIT](LICENSE). Utilisez, adaptez, partagez librement.
+*Pour les habitués de git : `git clone https://github.com/DGUCons/kit-assistant-documentaire.git`, puis la même phrase dans votre assistant, qui utilisera le clone local. Le détail des versions est dans le [CHANGELOG](CHANGELOG.md).*

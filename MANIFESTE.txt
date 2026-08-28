@@ -1,0 +1,60 @@
+# MANIFESTE du kit : un fichier par ligne, <marque>  <chemin>
+# marque `kit`         : remplaçable par /mettre-a-jour
+# marque `utilisateur` : modèle personnalisé à l'installation, JAMAIS écrasé par une mise à jour
+# Sert aussi au téléchargement de secours (fichier par fichier) et au contrôle d'intégrité (START.md, P0.7).
+
+kit  .gitignore
+kit  CHANGELOG.md
+kit  DEMARRAGE.md
+kit  INSTALLATION.md
+kit  LICENSE
+kit  MANIFESTE.txt
+kit  README.md
+kit  START.md
+kit  VERSION
+kit  arborescence/VOTRE_SOCIETE/a_supprimer/README.md
+kit  arborescence/VOTRE_SOCIETE/a_trier/README.md
+kit  arborescence/VOTRE_SOCIETE/a_valider/README.md
+kit  arborescence/VOTRE_SOCIETE/archives/README.md
+kit  docs/captures/architecture.png
+kit  docs/faq.md
+kit  docs/mise-a-jour.md
+kit  docs/securite.md
+kit  modele/.claude/commands/echeances.md
+kit  modele/.claude/commands/indexer.md
+kit  modele/.claude/commands/mettre-a-jour.md
+kit  modele/.claude/commands/point-etat.md
+kit  modele/.claude/commands/preparer-comptable.md
+kit  modele/.claude/commands/rapprocher.md
+kit  modele/.claude/commands/rechercher.md
+kit  modele/.claude/commands/reprendre.md
+kit  modele/.claude/commands/traiter-a-trier.md
+kit  modele/.claude/commands/verifier.md
+utilisateur  modele/00_CONTEXTE/CARTOGRAPHIE.md
+utilisateur  modele/00_CONTEXTE/CONTEXTE_SOCIETES.md
+utilisateur  modele/00_CONTEXTE/HANDOFF.md
+utilisateur  modele/00_CONTEXTE/JOURNAL_ACTIONS.md
+utilisateur  modele/00_CONTEXTE/REGLES_CLASSEMENT.md
+kit  modele/00_CONTEXTE/commandes/echeances.md
+kit  modele/00_CONTEXTE/commandes/indexer.md
+kit  modele/00_CONTEXTE/commandes/mettre-a-jour.md
+kit  modele/00_CONTEXTE/commandes/point-etat.md
+kit  modele/00_CONTEXTE/commandes/preparer-comptable.md
+kit  modele/00_CONTEXTE/commandes/rapprocher.md
+kit  modele/00_CONTEXTE/commandes/rechercher.md
+kit  modele/00_CONTEXTE/commandes/reprendre.md
+kit  modele/00_CONTEXTE/commandes/traiter-a-trier.md
+kit  modele/00_CONTEXTE/commandes/verifier.md
+kit  modele/INSTRUCTIONS.md
+kit  modele/OUVRIR_ICI.md
+kit  modele/_scripts/bdd.py
+kit  modele/_scripts/corbeille.py
+kit  modele/_scripts/extraire_texte.py
+kit  modele/_scripts/init_bdd.py
+kit  modele/_scripts/scan.py
+kit  modele/_scripts/verifier.py
+kit  modules/banque/MODULE.md
+kit  modules/banque/qonto_lecture.py
+kit  modules/chrome-comptable/MODULE.md
+kit  modules/enrichissement-legal/MODULE.md
+kit  modules/enrichissement-legal/enrichir.py

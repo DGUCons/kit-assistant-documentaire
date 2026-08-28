@@ -1,6 +1,6 @@
 # Règles de classement
 
-Autorité maximale : en cas de conflit avec une autre consigne, ces règles priment.
+Autorité maximale : en cas de conflit avec toute autre consigne, ces règles priment.
 
 ## RG.1 : lecture obligatoire
 
@@ -12,14 +12,24 @@ Tout document dont la structure, l'année ou le type est incertain part dans `a_
 
 ## RG.3 : le doublon se prouve
 
-Deux fichiers ne sont doublons que si leurs empreintes SHA-256 sont identiques. Un doublon prouvé, dont l'original est conservé et indexé, peut être mis en corbeille (réversible) avec mention au journal. Tout le reste (contenu similaire, nom identique, versions) va dans `a_supprimer/` avec `.txt` explicatif, jamais en corbeille.
+Deux fichiers ne sont doublons que si leurs empreintes SHA-256 sont identiques. Un doublon prouvé, dont l'original est conservé et indexé, part en corbeille du système (réversible) via `00_CONTEXTE/_scripts/corbeille.py`, avec mention au journal. Tout le reste (contenu similaire, nom identique, versions successives) va dans `a_supprimer/` avec un `.txt` explicatif (où est l'original conservé, pourquoi cette mise de côté), jamais en corbeille. Pendant l'indexation initiale (phase P3), les doublons sont seulement notés en base : ils ne sont traités qu'en phase P5.
 
 ## RG.4 : destinations
 
-- Factures : `02_Comptabilite/<annee>/factures/<annee>-<mois>/` ; pour les ventes, le mois retenu est celui du paiement (sinon `en_attente_paiement/`)
-- Documents de société (statuts, PV, contrats-cadres) : `01_Societe/`
-- [COMPLÉTER LORS DE L'INSTALLATION selon votre arborescence]
+- Factures : `02_Comptabilite/<annee>/factures/<annee>-<mois>/`
+- Relevés bancaires : `02_Comptabilite/<annee>/releves/`
+- Documents fiscaux : `02_Comptabilite/<annee>/fiscal/`
+- Documents de société (statuts, PV, Kbis, contrats-cadres) : `01_Societe/`
+- [COMPLÉTER AU CALIBRAGE (P3.2) ET À L'ARBORESCENCE CIBLE (P5) selon les types réels du corpus]
 
 ## RG.5 : traçabilité
 
-Chaque déplacement, renommage ou mise en corbeille est consigné dans `JOURNAL_ACTIONS.md` : date, action, chemin avant/après, raison. Des mois plus tard, tout doit pouvoir être retracé.
+Chaque déplacement, renommage ou mise en corbeille est consigné dans `JOURNAL_ACTIONS.md` : date, action, chemin avant/après, raison. Des mois plus tard, tout doit pouvoir être retracé. La base garde en plus le `chemin_origine` de chaque fichier migré : tout plan de rangement est réversible.
+
+## RG.6 : les opérations en série se font par plans
+
+Jamais plus d'une cinquantaine de fichiers par plan de déplacement/renommage. Chaque plan est présenté (avant → après), validé, exécuté, puis vérifié (`00_CONTEXTE/_scripts/verifier.py`). Un plan non validé n'est pas exécuté, même en partie.
+
+## RG.7 : les dossiers sources ne sont pas retouchés
+
+La convention de nommage s'applique aux fichiers classés dans l'arborescence cible. Les dossiers d'origine (et leurs noms, même avec accents ou espaces) ne sont jamais renommés tant qu'ils contiennent des fichiers non migrés.
