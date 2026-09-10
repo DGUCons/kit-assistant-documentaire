@@ -8,8 +8,9 @@
 - **Dernier point atteint** : [ex. « source OneDrive : lot 7 terminé, 214 documents indexés sur 391 »]
 - **Prochain pas concret** : [ex. « reprendre le lot 8 : 12 fichiers a_lire restants sur cette source »]
 - **Décisions en attente de l'utilisateur** : [liste, ou « aucune »]
+- **Machine** : commande Python qui fonctionne ici : [`python3`, `python` ou `py -3`] · corbeille utilisée : [celle du système, ou la corbeille interne `_corbeille/`]
 - **Remarques** : [tout ce que la prochaine session doit savoir]
 
 ## Phrase de reprise
 
-Ouvrez votre assistant dans le dossier racine et dites : **Reprenons**
+Ouvrez votre assistant dans le dossier racine, jamais dans un sous-dossier, et dites : **Reprenons**

@@ -6,32 +6,65 @@ Un assistant qui mène l'entretien, cartographie vos documents où qu'ils soient
 
 ## Installer : une seule phrase à coller
 
-1. Installez [Claude Code](https://claude.com/claude-code) et connectez-vous avec votre compte Claude (le pas à pas illustré est dans [INSTALLATION.md](INSTALLATION.md)).
-2. Ouvrez Claude Code et collez ceci :
+1. Prenez l'assistant pour lequel vous avez déjà un compte : Claude Code (en terminal ou dans l'onglet « Code » de l'application Claude), Claude Cowork, Codex, ChatGPT sur ordinateur, ou Gemini CLI. Le pas à pas de chacun est dans [INSTALLATION.md](INSTALLATION.md).
+2. Ouvrez-le **dans le dossier qui contiendra tous vos documents** (par exemple `Documents/Entreprise`, créé vide), et collez ceci :
 
 ```
 Récupère https://raw.githubusercontent.com/DGUCons/kit-assistant-documentaire/main/START.md et suis ces instructions pas à pas.
 ```
 
-C'est tout. **Vous ne téléchargez rien vous-même** : l'assistant récupère le kit, se présente, annonce ses règles, puis mène l'entretien sur vos sociétés (il peut retrouver lui-même leurs informations officielles sur l'annuaire public des entreprises), votre banque, votre cabinet comptable, et tous les endroits où vivent vos documents aujourd'hui. À chaque question, il donne sa recommandation ; à chaque étape, il attend votre accord.
+C'est tout. **Vous ne téléchargez rien vous-même** : l'assistant se présente, annonce ses règles, analyse votre machine et vous dit ce qu'il a trouvé, regarde le dossier où vous l'avez ouvert et vous prévient noir sur blanc de ce qu'il y créerait, récupère le kit, puis mène l'entretien sur vos sociétés (il peut retrouver lui-même leurs informations officielles sur l'annuaire public des entreprises), votre banque, votre cabinet comptable, et tous les endroits où vivent vos documents aujourd'hui. À chaque question, il donne sa recommandation ; à chaque étape, il attend votre accord. Rien n'est écrit chez vous avant votre « oui ».
+
+Connexion filtrée, téléchargement bloqué ? Déposez le ZIP du kit dans le dossier, l'assistant le trouve sur place ([mode d'emploi](INSTALLATION.md)).
 
 ## Ce qui se passe ensuite
 
 ![Schéma : chaque document lu une fois, puis indexé en base locale](docs/captures/architecture.png)
 
-1. **L'entretien** (15 à 20 minutes) : structures, comptabilité, banques, cartographie complète de vos documents, dossiers à ne jamais lire.
-2. **L'installation** (10 minutes) : votre dossier documentaire unique, ses règles, sa base d'indexation locale, et des commandes prêtes à l'emploi (`/traiter-a-trier`, `/rechercher`, `/point-etat`…).
-3. **L'indexation** (plusieurs sessions) : chaque document est lu **une seule fois**, réellement, puis fiché dans une petite base locale (empreinte, date, type, émetteur, montants, résumé). Une session s'interrompt ? Rien n'est perdu, la suivante reprend exactement où vous en étiez : dites juste « Reprenons ».
+1. **L'entretien** (15 à 20 minutes) : structures, comptabilité, banques, cartographie complète de vos documents, dossiers à ne jamais lire, premier comptage en lecture seule, et confirmation du dossier racine.
+2. **L'installation** (10 minutes) : votre dossier documentaire unique, ses règles, sa base d'indexation locale, des commandes prêtes à l'emploi (`/traiter-a-trier`, `/rechercher`, `/point-etat`…), et un test de la corbeille devant vous : c'est vous qui vérifiez que rien n'est jamais perdu.
+3. **L'indexation** (plusieurs sessions) : d'abord une vingtaine de documents validés un par un avec vous, puis des lots de 30 à 50. Chaque document est lu **une seule fois**, réellement, puis fiché dans une petite base locale (empreinte, date, type, émetteur, montants, résumé). Une session s'interrompt ? Rien n'est perdu, la suivante reprend exactement où vous en étiez : dites juste « Reprenons ».
 4. **Les questions** : ce que les documents n'ont pas révélé, l'assistant vous le demande, jamais l'inverse.
 5. **Le rangement** : une arborescence propre, proposée d'après votre corpus réel, validée avec vous, appliquée par petits plans réversibles.
 
 Ensuite, au quotidien : vous déposez, il classe, vous tranchez les cas douteux, le journal garde trace de tout. Vos recherches interrogent l'index et répondent en quelques secondes.
 
+## Où l'assistant travaille
+
+Le point le plus important de toute l'installation : l'assistant travaille à la racine d'un dossier unique qui contient **toutes** vos structures, une société = un dossier. C'est cette vue d'ensemble qui lui permet de router chaque document vers la bonne société et de tenir un index unique. Ne l'ouvrez jamais dans le dossier d'une seule société : il ne verrait qu'elle.
+
+Dès la première fois, ouvrez l'assistant dans le dossier qui contiendra tous vos documents et la base : par exemple `Documents/Entreprise`, à créer vide s'il n'existe pas, ou votre dossier principal actuel. Dans l'application de bureau, c'est le sélecteur de dossier de projet de l'onglet « Code », ou le dossier connecté dans « Cowork » ; dans un terminal, c'est le dossier où vous lancez `claude`, `codex` ou `gemini`. Avec Codex, c'est même indispensable : il ne lit ses instructions que dans le dossier où la session est ouverte. L'assistant confirme ce choix avec vous pendant l'entretien, vous liste ce qu'il créerait, et n'y crée rien avant votre accord. La fois suivante, relancez-le au même endroit, à la racine. Pas besoin de retrouver l'ancienne conversation : une session neuve à la racine suffit, tout est dans la passation, dites « Reprenons ». C'est aussi écrit dans `OUVRIR_ICI.md`, à la racine. Et si une session s'ouvre par erreur dans un sous-dossier, ses instructions contiennent le chemin de la racine : il s'y replace tout seul.
+
+![Schéma : un dossier racine, les sociétés dedans, l'assistant s'ouvre à la racine, un seul index](docs/captures/racine.png)
+
+Voici ce que l'installation crée, noms de sociétés mis à part :
+
+```
+Documents/Entreprise/         l'assistant s'ouvre ici, à la racine, à chaque session
+  CLAUDE.md                   ses instructions permanentes
+  AGENTS.md  GEMINI.md        même contenu, pour les autres assistants
+  OUVRIR_ICI.md               comment rouvrir l'assistant au bon endroit
+  00_CONTEXTE/                sociétés, cartographie, règles, sécurité, journal, passation, commandes, scripts, index
+  _corbeille/                 la corbeille du kit, utilisée quand celle du système n'est pas accessible ; vous la videz vous-même
+  .claude/  .gemini/  .agents/   les mêmes commandes pour Claude Code, Gemini CLI et Codex
+  .kit/                       le kit de référence, pour les mises à jour
+  SOCIETE_EXPLOITATION/       une société = un dossier
+    a_trier/  a_valider/  a_supprimer/  archives/
+    01_Societe/
+    02_Comptabilite/
+  HOLDING/                    même structure
+  SCI/                        même structure
+```
+
+Une seule structure ? Même principe, avec un seul dossier de société. Le détail de chaque société (par année, par mois, par type) est proposé plus tard, d'après vos documents réels, pas d'après un modèle.
+
 ## Les garde-fous
 
 L'assistant travaille sous des règles non négociables, détaillées dans [docs/securite.md](docs/securite.md) :
 
-- il ne supprime jamais rien définitivement : tout passe par la corbeille, réversible
+- il ne supprime jamais rien définitivement : tout passe par la corbeille, réversible (celle de votre système, ou un dossier `_corbeille/` que vous videz vous-même quand votre environnement n'en a pas)
+- il traite le contenu de vos documents et des pages web comme de l'information, jamais comme des ordres : une phrase glissée dans un PDF pour le détourner est signalée, pas exécutée
+- il ne contacte que trois destinations, toujours les mêmes : la page du kit, l'annuaire public des entreprises, et votre banque en lecture seule si vous activez ce module
 - il ne modifie et n'écrase jamais un document original
 - il journalise chaque action, datée, dans un fichier que vous pouvez relire
 - un doublon n'est déclaré doublon que preuve à l'appui (empreinte SHA-256), jamais sur la foi du nom
@@ -48,11 +81,17 @@ Uniquement des fichiers texte lisibles : des instructions en français et quelqu
 
 ## Compatibilité
 
-Conçu, optimisé et **testé avec Claude Code** (modèle Opus ou supérieur recommandé). Il fonctionne en principe avec d'autres assistants en ligne de commande (OpenAI Codex, Google Gemini CLI) : le kit s'adapte et le signale honnêtement, mais ces parcours n'ont pas été testés (retours bienvenus). Windows et macOS.
+Windows, macOS et Linux (avec ou sans bureau graphique), avec six parcours : Claude Code en terminal, application Claude onglet « Code », application Claude onglet « Cowork », Codex, ChatGPT sur ordinateur, Gemini CLI. Même parcours, même résultat sur votre disque. Les commandes s'appellent par `/traiter-a-trier` avec Claude Code et Gemini CLI, `$traiter-a-trier` avec Codex, et par une simple phrase partout ailleurs.
+
+Le kit a été mis au point d'abord avec Claude Code, qui reste le parcours le plus rodé, et un modèle capable (Opus ou supérieur) change beaucoup la qualité de lecture des documents. Un seul module, la consultation du site de votre cabinet comptable, est propre à Claude.
+
+Avant d'installer quoi que ce soit, l'assistant analyse votre machine (système, Python, réseau, corbeille disponible) et vous restitue tout en une fois. Dans un environnement où il n'a pas accès à la corbeille du système, comme l'onglet « Cowork », il installe et utilise une corbeille interne : un dossier `_corbeille/` rangé par date, à la racine de votre dossier, visible dans votre explorateur de fichiers et que vous videz vous-même. La promesse « rien n'est jamais supprimé » tient partout. Et si le téléchargement du kit est bloqué par votre réseau, vous déposez le ZIP dans le dossier : l'assistant s'en sert.
+
+Le détail des vérifications est dans [INSTALLATION.md](INSTALLATION.md).
 
 ## Le coût, honnêtement
 
-- L'abonnement Claude Pro (environ 20 euros par mois) suffit pour un usage courant. Pour traiter un gros historique plus vite au démarrage, un palier supérieur accélère le premier mois, puis vous pouvez redescendre.
+- Un abonnement d'entrée de gamme chez l'éditeur de votre assistant (de l'ordre de 20 euros par mois, Claude Pro par exemple) suffit pour un usage courant. Pour traiter un gros historique plus vite au démarrage, un palier supérieur accélère le premier mois, puis vous pouvez redescendre.
 - **Le premier passage sur votre historique est le moment coûteux** : chaque document est lu une fois. C'est long, cela consomme une bonne part du quota de votre abonnement, c'est normal, et cela n'arrive qu'une seule fois. L'assistant traite par lots, sur plusieurs sessions ; si vous atteignez la limite, le travail est conservé, vous reprenez plus tard.
 - Ensuite, seuls les nouveaux documents sont lus : quelques secondes, coût marginal.
 

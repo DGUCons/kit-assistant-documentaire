@@ -1,61 +1,96 @@
-# MANIFESTE du kit : un fichier par ligne, <marque>  <chemin>
-# marque `kit`         : remplaçable par /mettre-a-jour
-# marque `utilisateur` : modèle personnalisé à l'installation, JAMAIS écrasé par une mise à jour
-# Sert aussi au téléchargement de secours (fichier par fichier) et au contrôle d'intégrité (START.md, P0.7).
+# MANIFESTE du kit : une ligne par fichier, <marque>  <sha256>  <chemin>
+# marque `kit`         : remplacable par /mettre-a-jour
+# marque `utilisateur` : modele personnalise a l'installation, JAMAIS ecrase par une mise a jour
+#
+# Le fichier d'instructions installe a la racine de votre dossier (CLAUDE.md, AGENTS.md
+# ou GEMINI.md, selon votre assistant) est une COPIE PERSONNALISEE de modele/INSTRUCTIONS.md :
+# c'est un fichier utilisateur, une mise a jour ne l'ecrase jamais.
+#
+# Sert au telechargement de secours (fichier par fichier) et au controle d'integrite
+# (START.md, P0.7 ; commande /mettre-a-jour) : python3 manifeste.py --verifier <dossier>
+# Une empreinte `-` : seule la presence du fichier est verifiee.
 
-kit  .gitignore
-kit  CHANGELOG.md
-kit  DEMARRAGE.md
-kit  INSTALLATION.md
-kit  LICENSE
-kit  MANIFESTE.txt
-kit  README.md
-kit  START.md
-kit  VERSION
-kit  arborescence/VOTRE_SOCIETE/a_supprimer/README.md
-kit  arborescence/VOTRE_SOCIETE/a_trier/README.md
-kit  arborescence/VOTRE_SOCIETE/a_valider/README.md
-kit  arborescence/VOTRE_SOCIETE/archives/README.md
-kit  docs/captures/architecture.html
-kit  docs/captures/architecture.png
-kit  docs/faq.md
-kit  docs/mise-a-jour.md
-kit  docs/securite.md
-kit  modele/.claude/commands/echeances.md
-kit  modele/.claude/commands/indexer.md
-kit  modele/.claude/commands/mettre-a-jour.md
-kit  modele/.claude/commands/point-etat.md
-kit  modele/.claude/commands/preparer-comptable.md
-kit  modele/.claude/commands/rapprocher.md
-kit  modele/.claude/commands/rechercher.md
-kit  modele/.claude/commands/reprendre.md
-kit  modele/.claude/commands/traiter-a-trier.md
-kit  modele/.claude/commands/verifier.md
-utilisateur  modele/00_CONTEXTE/CARTOGRAPHIE.md
-utilisateur  modele/00_CONTEXTE/CONTEXTE_SOCIETES.md
-utilisateur  modele/00_CONTEXTE/HANDOFF.md
-utilisateur  modele/00_CONTEXTE/JOURNAL_ACTIONS.md
-utilisateur  modele/00_CONTEXTE/REGLES_CLASSEMENT.md
-kit  modele/00_CONTEXTE/commandes/echeances.md
-kit  modele/00_CONTEXTE/commandes/indexer.md
-kit  modele/00_CONTEXTE/commandes/mettre-a-jour.md
-kit  modele/00_CONTEXTE/commandes/point-etat.md
-kit  modele/00_CONTEXTE/commandes/preparer-comptable.md
-kit  modele/00_CONTEXTE/commandes/rapprocher.md
-kit  modele/00_CONTEXTE/commandes/rechercher.md
-kit  modele/00_CONTEXTE/commandes/reprendre.md
-kit  modele/00_CONTEXTE/commandes/traiter-a-trier.md
-kit  modele/00_CONTEXTE/commandes/verifier.md
-kit  modele/INSTRUCTIONS.md
-kit  modele/OUVRIR_ICI.md
-kit  modele/_scripts/bdd.py
-kit  modele/_scripts/corbeille.py
-kit  modele/_scripts/extraire_texte.py
-kit  modele/_scripts/init_bdd.py
-kit  modele/_scripts/scan.py
-kit  modele/_scripts/verifier.py
-kit  modules/banque/MODULE.md
-kit  modules/banque/qonto_lecture.py
-kit  modules/chrome-comptable/MODULE.md
-kit  modules/enrichissement-legal/MODULE.md
-kit  modules/enrichissement-legal/enrichir.py
+kit  3b7eaf37a7c89647e3303a32f6b3ef5f2ffff19a217104773aa87a24e8853b4a  .gitignore
+kit  eb4ee0aa91bbeabcc838fa8b76fd400b26d21167f06ec33e5445a71e5d1ffb0a  CHANGELOG.md
+kit  68d391d840fa3d8e80aa2562c45309b74265dc4a6cc84c75c10c1a8d81fa77ba  DEMARRAGE.md
+kit  571cd0f453bcefd7b89c4d98a539f85a177443dd1ff2f9f5a1391ccee173b855  INSTALLATION.md
+kit  791bb5d4d46f30f8d50b3ca04dae52b6e68862c1a0c7a653832568e4cf12ebbc  LICENSE
+kit  -  MANIFESTE.txt
+kit  e8fa5033607a91736e2535bada4c6d17161af20c8ceae927a23f3a1373c2d7d1  README.md
+kit  1f912b6722656ed07b176baa02c46f4167b6871728992ab5fc4e287f3e90146b  START.md
+kit  c89b87c262e9d5ffd20e73aac74a1772adcc9f5a21682cc33adcf5086e5fef5c  VERSION
+kit  60f56ec9208e28d84579f892c075cf9c5f95044ea1448ed4fbe22f69ee1012c7  arborescence/VOTRE_SOCIETE/a_supprimer/README.md
+kit  2500c5618dbfb20ebfd3a96151733a17b713b3810f04929c1f148ca990bc28ba  arborescence/VOTRE_SOCIETE/a_trier/README.md
+kit  e7136410685a3ef0ebcea9c6b486102f345754c2697b1ce67849aac74d740412  arborescence/VOTRE_SOCIETE/a_valider/README.md
+kit  d30d48d9430047793c4c8756219ed5f01ba490945b17f40b0e27147007b9048d  arborescence/VOTRE_SOCIETE/archives/README.md
+utilisateur  8099fefb849ec7e76db0ea24756f3bfc0570c732b06f3a63fe578f71bf5df22f  arborescence/_corbeille/README.md
+kit  7626de8aca86215d01fe490572a44e7c9d68c0c8afa60dbe6ec2f16e73b7551d  docs/captures/architecture.html
+kit  30351fb9e69f865eb19a37a2598aa7869cc8a0e5edc0f0518681f9127c59e3cd  docs/captures/architecture.png
+kit  1b7152eac674046956fdf9709a039fcaad085e8bddb219a3600d9dc4b19694de  docs/captures/racine.html
+kit  ddd2aa5288708c864565d0511e27aca6d8e572f0fee841678456a0b145a4a91d  docs/captures/racine.png
+kit  53538bf06c488ee4a860e2d61816e773d830d3e6e58a00918204ddc52acc6ea1  docs/faq.md
+kit  53fe355c700c9df28b5aacfa2e4c1e6dba4755d83b527d9c90d05293bf87a284  docs/mise-a-jour.md
+kit  7b431767d4632f6586b7ae99c62dd387fca0991890167511e697327808d197ea  docs/securite.md
+kit  999fe6fff1d17ec9ad1736d746ae3089c7558a6b2ae419f0f6cf900567fc6c93  manifeste.py
+kit  6ca93a1922b0a24eec847c28bcbbec7cb6691631f49b21bef3924699a599e346  modele/.agents/skills/echeances/SKILL.md
+kit  e07e9301c9a4b5f67fe4d77c9cfa660190ae359d2a0c1a67a4a1dfe94b9c8fe2  modele/.agents/skills/indexer/SKILL.md
+kit  2b0a709436f69a0c1b9dc988dff31a3f23a2f4a52a59b78af2066661b3b6c7c8  modele/.agents/skills/mettre-a-jour/SKILL.md
+kit  449b9865665fb15a1fc0aee6f2a1d05b8496e96be3eb189fb33f64e641e27deb  modele/.agents/skills/point-etat/SKILL.md
+kit  cf4f959facc986d7baf23a46d32f86dabfac908f3817a384ce0de625f4c89b18  modele/.agents/skills/preparer-comptable/SKILL.md
+kit  d6d40ed9afc0f52aa9ab0226b881cf22a698a4ca1223151aa99f9abb16339b3f  modele/.agents/skills/rapprocher/SKILL.md
+kit  ed6b8b9d733b846c0971354051fe2a81684a0ce8a6120e6e4f9c4314b986711f  modele/.agents/skills/rechercher/SKILL.md
+kit  e793752615f8f6170f7b481f7a4b9a8239783cb08c386b601a692be063d8dfe8  modele/.agents/skills/reprendre/SKILL.md
+kit  a0aee2c0f613aa7015ff75568c40e7eb9eadb15d04957ca5944e27c17bdbcdb9  modele/.agents/skills/traiter-a-trier/SKILL.md
+kit  658912cebb216391ce354070f5f30de3932349d292e57aa2d3f32333b2f5b23a  modele/.agents/skills/verifier/SKILL.md
+kit  c35a230d568e0317953763f6ea9b001efe2e5b5cbb77f19cc98675b80f2ae81b  modele/.claude/commands/echeances.md
+kit  8ffcc33d4ac2c3d830b6188b5c3d769c1e0b03261b37614b049372fa29ef0d12  modele/.claude/commands/indexer.md
+kit  477b983958be18af0246e6280240b27086c78bdf9ac6bdbfa038cd4850f90228  modele/.claude/commands/mettre-a-jour.md
+kit  fe9f100f9363caafbc9300737b42ab2d819cd0b72b9d7e11f92b2dc402229f0d  modele/.claude/commands/point-etat.md
+kit  54ba57173878b7b741bec654b465347662bce421970fa805a676a782f99b331a  modele/.claude/commands/preparer-comptable.md
+kit  642d815310cc03a5f18c2d9bb414594a57f08334c69d879574e7f491361a006e  modele/.claude/commands/rapprocher.md
+kit  9e7c92f3cdffe99fe459d37e35f2639ac8f73ca4cf2592beda8d9d9fa3fa18d6  modele/.claude/commands/rechercher.md
+kit  793b754ed89500d343c864b7eb51b84d470d6d3a927390d9551f6a593d20b376  modele/.claude/commands/reprendre.md
+kit  a58f51ec84af5e5521aac31398ef61c51609b781aaebd2d0d8f631980146b574  modele/.claude/commands/traiter-a-trier.md
+kit  7589c1c8bab975ec1abd60aa079e35bcf531a52675218b1c32eddb1686a618c2  modele/.claude/commands/verifier.md
+kit  18365c3c62f9522de5ed8f05dd103230ba68da31fd660a4867a40589fc0523a9  modele/.claude/settings.json
+kit  7d47bff79c384a73e76bea1fbecb28389e44aa5abbcaf001ed7b766786acc7ab  modele/.gemini/commands/echeances.toml
+kit  245d55ecfa92510e5073c2cadf1f51645d4f001f3491d848469dfc6919ee8826  modele/.gemini/commands/indexer.toml
+kit  d4f99b5675b6f4151664ff4b6845918491efce6f982c33c33194547a1bf4f880  modele/.gemini/commands/mettre-a-jour.toml
+kit  12bc3dc8c43f1ed7ab65f73781ce464ade7ad4fdf008d41839b4780542ff023c  modele/.gemini/commands/point-etat.toml
+kit  48e725974f4e63abe19c48f4f8807022b0e1483c72dbb32e9b251259663a9e19  modele/.gemini/commands/preparer-comptable.toml
+kit  5e413bf6e777756ee60eb29d98b3a0ede4ecc602a5ad79067bc8367e389c4a90  modele/.gemini/commands/rapprocher.toml
+kit  e954ef7e27ea013e16d7b19640b98713ae5102ba6de66cf89775aecedd035948  modele/.gemini/commands/rechercher.toml
+kit  cb7b4df539db89cbbc5ef30ed5344530c84e2628a9037e860cbb70b41f132941  modele/.gemini/commands/reprendre.toml
+kit  e84177644a33bc60164c35263bec0264185c4d4957b8c1599493885029a014e2  modele/.gemini/commands/traiter-a-trier.toml
+kit  e6d059cf78b01d0387e37808efdacc7ad8c3387c81d62ae9a37eaa9c26e0e1a8  modele/.gemini/commands/verifier.toml
+utilisateur  060f8ef4fd46b9ea5bfcc6d3006b14e58f0c34ce36eb81af4f22c21db675daa1  modele/00_CONTEXTE/CARTOGRAPHIE.md
+utilisateur  196e9e63cc0808d657cc1158ca6e39a57e2a90f9236926e694f3fb3267c95692  modele/00_CONTEXTE/CONTEXTE_SOCIETES.md
+utilisateur  e2e48bcf1695417e7345ad795a7246ea9a05ac2dbd963cf222ef88cb3e77268e  modele/00_CONTEXTE/HANDOFF.md
+utilisateur  5a51e546063a8beec6eebbd8d93ee08ae8d3657f8f0c32a7f03488930bc39687  modele/00_CONTEXTE/JOURNAL_ACTIONS.md
+utilisateur  9b108c7dbbc022596ef874e25c92cad0f7b63b9d1baf22c8a6799ce8a760a737  modele/00_CONTEXTE/REGLES_CLASSEMENT.md
+kit  5cc7f547e6a7ca047dfef474896200bab1825ca51fa5b07f032bdb4d8b2c013a  modele/00_CONTEXTE/commandes/echeances.md
+kit  3b9d1ad424dd36c1f35b2cbdd0afd377898baaac81ed64e2ab9ea877f4d89ca7  modele/00_CONTEXTE/commandes/indexer.md
+kit  f411048d44a189a7cfafdd0770c0d4e9788e062e64c0d2c2c3f45f2944fa30a9  modele/00_CONTEXTE/commandes/mettre-a-jour.md
+kit  590a5a6963dbc5cfb123bdb01c22e736fd64894c9945b3064a1b8f673a2f8432  modele/00_CONTEXTE/commandes/point-etat.md
+kit  d5b90aba5a1a5a767ffa02ec34025d22f487d0815f4a8d7193fbe36aa681853b  modele/00_CONTEXTE/commandes/preparer-comptable.md
+kit  dd498d1e11ec9dc0a850ed497792018779af57ae984981d1112e2512c08f827e  modele/00_CONTEXTE/commandes/rapprocher.md
+kit  b51088c4ce6b1501cc4daac2898555b92b5c0cb16f8994d0a39c8e81d6190166  modele/00_CONTEXTE/commandes/rechercher.md
+kit  d0b3816a1ea9559b5b34932ab6cf085409ebe01b13b2aaaf568d18e689e02647  modele/00_CONTEXTE/commandes/reprendre.md
+kit  82934392d14b6cfe6561fdaeaa516ecce7cea278c7477af568837fa47d7dc515  modele/00_CONTEXTE/commandes/traiter-a-trier.md
+kit  16c668fc341036b5e499dd22ca593f3891aa660cc5349761ef96221913a40eaa  modele/00_CONTEXTE/commandes/verifier.md
+kit  37d740aebff61599f204d72d0b960e1be9e255bd799287d850e6f4a2bc9d36df  modele/INSTRUCTIONS.md
+kit  8aa546e017fb9019a11779a3e916d3b48c5b348b7551ffb2de3b3414bc563015  modele/OUVRIR_ICI.md
+kit  5de757710872cbe0dafa907d653914999c3ffc18b88b859a6c013bf384a705fb  modele/_scripts/bdd.py
+kit  ca7f8bfaa2321a541fcebdf1f1c98e4f36ab160893c4ff6c6bd5d31c9afe6b1a  modele/_scripts/corbeille.py
+kit  1bd792bd9bb59f84d89c119d2cc7cd1ae1b982a3be1ab886bf14033e967544e2  modele/_scripts/extraire_texte.py
+kit  b996a9ec1f6fc9316b2b8ca3cc8a818348f26cbe482d26d4131080e580bf9b94  modele/_scripts/init_bdd.py
+kit  babf56fdb03b85a700babe26ff2a63479ed1fd5070d0c24ed0aafd69ee81a859  modele/_scripts/requirements.txt
+kit  d6d2356ebf9384114cffa9003f66da6dc486248ddd5024b6726f6e985f3fff05  modele/_scripts/scan.py
+kit  f8a5b1bc0b124fda0de39d64549114421bb0206b266f009cf90662cc3dd73e88  modele/_scripts/sortie.py
+kit  518338b36564a56c8ce336ac0a7aebfcf7be001f746b4ea27dce94cf3773310a  modele/_scripts/tests_scripts.py
+kit  f75e949d025716052719121354af23ccbafa0ffe41c3ed147347eaee024a94d9  modele/_scripts/verifier.py
+kit  96ee0c0873343c1495244bb13f7bb62805ae084b61b76f7de66843f81b8cefaa  modules/banque/MODULE.md
+kit  2183a9e2c533d6fefb64b364efb4c6188155afcdf166386c2c4803db5578229c  modules/banque/qonto_lecture.py
+kit  b0747c76e75fe88df3376c515e2b72229622fb5a0f1eada15cb347d8f28d6b10  modules/chrome-comptable/MODULE.md
+kit  b283854f8affe207e3e4bcd7e485ea5a95350e3bd5f39df9c5e55011e5d1ee25  modules/enrichissement-legal/MODULE.md
+kit  0de045c6dc3abd8d1ad838360b7399979353820e31ed25c28a8133c504d28033  modules/enrichissement-legal/enrichir.py

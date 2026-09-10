@@ -12,7 +12,13 @@ Tout document dont la structure, l'année ou le type est incertain part dans `a_
 
 ## RG.3 : le doublon se prouve
 
-Deux fichiers ne sont doublons que si leurs empreintes SHA-256 sont identiques. Un doublon prouvé, dont l'original est conservé et indexé, part en corbeille du système (réversible) via `00_CONTEXTE/_scripts/corbeille.py`, avec mention au journal. Tout le reste (contenu similaire, nom identique, versions successives) va dans `a_supprimer/` avec un `.txt` explicatif (où est l'original conservé, pourquoi cette mise de côté), jamais en corbeille. Pendant l'indexation initiale (phase P3), les doublons sont seulement notés en base : ils ne sont traités qu'en phase P5.
+Deux fichiers ne sont doublons que si leurs empreintes SHA-256 sont identiques. Un doublon prouvé, dont l'original est conservé et indexé, part en corbeille (réversible) via `00_CONTEXTE/_scripts/corbeille.py`, avec mention au journal.
+
+Le script choisit tout seul la corbeille : celle du système quand elle est disponible et sur le même volume, sinon la corbeille interne du kit, `_corbeille/AAAA-MM-JJ/` à la racine du dossier documentaire, visible dans l'explorateur de fichiers et vidée par l'utilisateur seul. L'option `--interne` force ce second mode. Dans les deux cas, la sortie du script dit quelle corbeille a servi et où le fichier est parti : cette information va au journal.
+
+**Le script met la base à jour lui-même** : quand il trouve `00_CONTEXTE/index.db` à côté de lui, il inscrit sur la fiche du fichier le marqueur `supprime`, le statut `corbeille`, la date et l'emplacement dans la corbeille. Aucune écriture manuelle en base après un passage de `corbeille.py`, et le contrôle `/verifier` ne comptera pas ces fichiers comme disparus.
+
+Tout le reste (contenu similaire, nom identique, versions successives) va dans `a_supprimer/` avec un `.txt` explicatif (où est l'original conservé, pourquoi cette mise de côté), jamais en corbeille. Pendant l'indexation initiale (phase P3), les doublons sont seulement notés en base : ils ne sont traités qu'en phase P5.
 
 ## RG.4 : destinations
 

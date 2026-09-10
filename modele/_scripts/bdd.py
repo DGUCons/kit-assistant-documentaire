@@ -6,6 +6,7 @@ La base vit dans 00_CONTEXTE/index.db, à côté du dossier _scripts/.
 
 from __future__ import annotations
 
+import os
 import sqlite3
 import sys
 import unicodedata
@@ -25,11 +26,21 @@ def normaliser(chemin: str | Path) -> str:
 
 
 def connexion(creer: bool = False) -> sqlite3.Connection:
+    """Ouvre la base. `timeout` laisse passer un scan concurrent au lieu d'echouer ;
+    le mode WAL evite qu'une lecture bloque une ecriture."""
     if not creer and not CHEMIN_BDD.exists():
         sys.exit(f"Base introuvable : {CHEMIN_BDD}. Lancer d'abord init_bdd.py.")
-    conn = sqlite3.connect(CHEMIN_BDD)
+    if not CHEMIN_BDD.exists():
+        # La base contient le texte de tous vos documents : creee lisible par vous seul.
+        CHEMIN_BDD.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            os.close(os.open(str(CHEMIN_BDD), os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600))
+        except OSError:
+            pass   # systeme sans droits POSIX (Windows) : SQLite creera le fichier
+    conn = sqlite3.connect(CHEMIN_BDD, timeout=30)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
+    conn.execute("PRAGMA journal_mode = WAL")
     return conn
 
 

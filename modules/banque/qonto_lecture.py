@@ -1,7 +1,7 @@
 """Synchronisation Qonto en LECTURE SEULE. Aucune écriture, aucun virement, jamais.
 
 La clé d'accès vit HORS du dossier documentaire :
-  ~/.config/assistant-doc/qonto.json   →   {"login": "...", "secret_key": "..."}
+  ~/.config/assistant-doc/qonto.json   contient   {"login": "...", "secret_key": "..."}
 (identifiants d'API Qonto : réglages de l'organisation, section « Clé API ».)
 
 Ce script n'émet que des requêtes GET. Les transactions arrivent dans la table
@@ -14,7 +14,10 @@ Usage : python3 qonto_lecture.py
 from __future__ import annotations
 
 import json
+import os
+import stat
 import sys
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -33,6 +36,7 @@ else:
     sys.exit("Impossible de trouver 00_CONTEXTE/_scripts/bdd.py : lancer ce script"
              " depuis la racine du dossier documentaire.")
 import bdd  # noqa: E402
+import sortie  # noqa: E402
 
 BASE = "https://thirdparty.qonto.com/v2"
 CHEMIN_CLE = Path.home() / ".config" / "assistant-doc" / "qonto.json"
@@ -46,15 +50,38 @@ def requete(chemin: str, jeton: str, parametres: dict | None = None) -> dict:
         "Authorization": jeton,
         "Accept": "application/json",
         # Cloudflare bloque l'agent par défaut de Python : agent explicite obligatoire.
-        "User-Agent": "kit-assistant-documentaire/2.0 (lecture seule)",
+        "User-Agent": "kit-assistant-documentaire (lecture seule)",
     })
-    with urllib.request.urlopen(demande, timeout=30) as reponse:
-        return json.loads(reponse.read().decode("utf-8"))
+    # Le jeton voyage dans l'en-tête Authorization : il n'apparaît dans aucun message.
+    try:
+        with urllib.request.urlopen(demande, timeout=30) as reponse:
+            return json.loads(reponse.read().decode("utf-8"))
+    except urllib.error.HTTPError as erreur:
+        sys.exit(f"Qonto a refusé la requête {chemin} (code {erreur.code})."
+                 f" Vérifiez la clé d'accès dans {CHEMIN_CLE} et ses droits en lecture.")
+    except urllib.error.URLError as erreur:
+        sys.exit(f"Connexion à Qonto impossible ({erreur.reason}). Vérifiez votre accès à Internet.")
+    except (OSError, ValueError) as erreur:
+        sys.exit(f"Réponse de Qonto inexploitable pour {chemin} : {erreur}")
+
+
+def controler_droits(chemin: Path) -> None:
+    """La clé d'accès bancaire ne doit être lisible que par son propriétaire."""
+    if os.name == "nt":
+        print(f"Avertissement : vérifiez que {chemin} n'est lisible que par votre compte Windows"
+              " (Propriétés, Sécurité).")
+        return
+    mode = stat.S_IMODE(chemin.stat().st_mode)
+    if mode & 0o077:
+        sys.exit(f"Droits trop larges sur {chemin} ({oct(mode)}) : ce fichier contient une clé"
+                 f" d'accès bancaire.\nCorrigez avec :  chmod 600 {chemin}")
 
 
 def main() -> None:
+    sortie.configurer()
     if not CHEMIN_CLE.exists():
         sys.exit(f"Clé introuvable : {CHEMIN_CLE}\nVoir modules/banque/MODULE.md pour la créer.")
+    controler_droits(CHEMIN_CLE)
     identifiants = json.loads(CHEMIN_CLE.read_text(encoding="utf-8"))
     jeton = f"{identifiants['login']}:{identifiants['secret_key']}"
 

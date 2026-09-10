@@ -14,13 +14,14 @@ from __future__ import annotations
 
 import json
 import sys
+import urllib.error
 import urllib.parse
 import urllib.request
 
 API = "https://recherche-entreprises.api.gouv.fr/search"
 
 # Codes INSEE de nature juridique les plus courants (libellé indicatif ;
-# code inconnu → affiché brut avec la mention « code INSEE »).
+# un code inconnu est affiché brut avec la mention « code INSEE »).
 FORMES = {
     "1000": "Entrepreneur individuel",
     "5202": "Société en nom collectif",
@@ -39,13 +40,30 @@ FORMES = {
 }
 
 
+def configurer_sortie() -> None:
+    """Script autonome : il ne dépend d'aucun autre fichier du kit."""
+    for flux in (sys.stdout, sys.stderr):
+        if hasattr(flux, "reconfigure"):
+            flux.reconfigure(encoding="utf-8", errors="replace")
+
+
 def main() -> None:
+    configurer_sortie()
     if len(sys.argv) < 2:
         sys.exit(__doc__)
     nom = " ".join(sys.argv[1:])
     url = API + "?" + urllib.parse.urlencode({"q": nom, "per_page": 5, "page": 1})
-    with urllib.request.urlopen(url, timeout=30) as reponse:
-        donnees = json.loads(reponse.read().decode("utf-8"))
+    try:
+        with urllib.request.urlopen(url, timeout=30) as reponse:
+            donnees = json.loads(reponse.read().decode("utf-8"))
+    except urllib.error.HTTPError as erreur:
+        sys.exit(f"L'annuaire des entreprises a refusé la requête (code {erreur.code})."
+                 " Réessayer plus tard, ou saisir les informations à la main.")
+    except urllib.error.URLError as erreur:
+        sys.exit(f"Annuaire des entreprises injoignable ({erreur.reason})."
+                 " Vérifiez votre accès à Internet.")
+    except (OSError, ValueError) as erreur:
+        sys.exit(f"Réponse de l'annuaire des entreprises inexploitable : {erreur}")
 
     resultats = donnees.get("results", [])
     if not resultats:

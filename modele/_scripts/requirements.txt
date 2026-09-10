@@ -1,0 +1,7 @@
+# Dependances du SEUL script optionnel extraire_texte.py.
+# Les autres scripts du kit n'utilisent que la bibliotheque standard.
+# Installation : pip install -r requirements.txt
+# Versions epinglees, compatibles Python 3.9 et plus.
+pdfplumber==0.11.10
+python-docx==1.2.0
+openpyxl==3.1.5

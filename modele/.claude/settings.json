@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(rm *)",
+      "Bash(rmdir *)",
+      "Bash(del *)",
+      "Bash(Remove-Item *)",
+      "Bash(git push *)",
+      "Bash(curl -X POST *)",
+      "Bash(curl --request POST *)",
+      "Bash(wget --post*)",
+      "Bash(osascript *)"
+    ]
+  }
+}

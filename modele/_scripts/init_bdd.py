@@ -8,9 +8,12 @@ Usage : python3 init_bdd.py
 
 from __future__ import annotations
 
-import bdd
+import sqlite3
 
-VERSION_SCHEMA = 1
+import bdd
+import sortie
+
+VERSION_SCHEMA = 2
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS meta (
@@ -75,6 +78,7 @@ CREATE TABLE IF NOT EXISTS fichiers (
     -- a_lire, indexe, classe, a_valider, a_supprimer, corbeille, illisible, non_disponible
   supprime                    INTEGER NOT NULL DEFAULT 0,  -- 1 = disparu du disque (jamais effacé en base)
   date_suppression            TEXT,
+  chemin_corbeille            TEXT,                  -- où le fichier a été déposé par corbeille.py
   qualification_par           TEXT,                  -- 'ia' ou 'humain'
   notes                       TEXT
 );
@@ -161,23 +165,42 @@ CREATE TRIGGER IF NOT EXISTS fichiers_fts_update AFTER UPDATE ON fichiers BEGIN
 END;
 """
 
-# Migrations futures : {2: ["ALTER TABLE ...", ...], 3: [...]}
-MIGRATIONS: dict[int, list[str]] = {}
+def colonne_existe(conn: sqlite3.Connection, table: str, colonne: str) -> bool:
+    # Les noms de table et de colonne sont des constantes de ce fichier, jamais une saisie.
+    return any(ligne["name"] == colonne for ligne in conn.execute(f"PRAGMA table_info({table})"))
+
+
+def ajouter_colonne(conn: sqlite3.Connection, table: str, colonne: str, definition: str) -> None:
+    """Ajout de colonne rejouable : ne fait rien si la colonne est déjà là."""
+    if not colonne_existe(conn, table, colonne):
+        conn.execute(f"ALTER TABLE {table} ADD COLUMN {colonne} {definition}")
+
+
+def migration_2(conn: sqlite3.Connection) -> None:
+    """Mémorise où corbeille.py a déposé un document, pour pouvoir le remettre en place."""
+    ajouter_colonne(conn, "fichiers", "chemin_corbeille", "TEXT")
+
+
+# Migrations successives, chacune rejouable sans danger.
+MIGRATIONS = {2: [migration_2]}
 
 
 def main() -> None:
+    sortie.configurer()
     creation = not bdd.CHEMIN_BDD.exists()
     conn = bdd.connexion(creer=True)
+    # executescript() valide la transaction en cours : jamais dans un bloc `with conn`.
+    conn.executescript(SCHEMA)
+    conn.commit()
     with conn:
-        conn.executescript(SCHEMA)
         if creation:
             bdd.meta_ecrire(conn, "version_schema", str(VERSION_SCHEMA))
             bdd.meta_ecrire(conn, "date_installation", bdd.maintenant())
         else:
             version = int(bdd.meta_lire(conn, "version_schema") or "1")
             for cible in sorted(v for v in MIGRATIONS if v > version):
-                for instruction in MIGRATIONS[cible]:
-                    conn.execute(instruction)
+                for etape in MIGRATIONS[cible]:
+                    etape(conn)
                 bdd.meta_ecrire(conn, "version_schema", str(cible))
                 print(f"Migration de schéma appliquée : version {cible}")
     etat = "créée" if creation else "vérifiée (déjà en place)"

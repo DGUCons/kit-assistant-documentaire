@@ -13,9 +13,20 @@ import sys
 from pathlib import Path
 
 import bdd
+import sortie
+
+# Dossiers de transit : un document « classé » n'a rien à y faire.
+DOSSIERS_DE_TRANSIT = {"a_trier", "a_valider"}
+
+
+def dans_un_dossier_de_transit(chemin: str) -> bool:
+    """Comparaison sur le segment de chemin : « societe_a_trier_2024 » n'est pas
+    un dossier a_trier, un LIKE '%a_trier%' le signalait à tort."""
+    return any(partie in DOSSIERS_DE_TRANSIT for partie in Path(chemin).parts)
 
 
 def main() -> None:
+    sortie.configurer()
     conn = bdd.connexion()
     anomalies = 0
 
@@ -49,12 +60,14 @@ def main() -> None:
 
     print("--- Statuts incohérents ---")
     for ligne in conn.execute(
-        "SELECT id, chemin, statut_classement FROM fichiers WHERE supprime = 0 AND ("
-        " (statut_classement = 'classe' AND (chemin LIKE '%a_trier%' OR chemin LIKE '%a_valider%'))"
-        " OR (statut_classement IN ('indexe','classe') AND contenu_lu = 0))"
+        "SELECT id, chemin, statut_classement, contenu_lu FROM fichiers WHERE supprime = 0"
+        " AND statut_classement IN ('indexe', 'classe')"
     ):
-        anomalies += 1
-        print(f"  [{ligne['id']}] {ligne['statut_classement']} : {ligne['chemin']}")
+        classe_en_transit = (ligne["statut_classement"] == "classe"
+                             and dans_un_dossier_de_transit(ligne["chemin"]))
+        if classe_en_transit or not ligne["contenu_lu"]:
+            anomalies += 1
+            print(f"  [{ligne['id']}] {ligne['statut_classement']} : {ligne['chemin']}")
 
     compteurs = conn.execute(
         "SELECT statut_classement, COUNT(*) AS n FROM fichiers WHERE supprime = 0"

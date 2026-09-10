@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Où l'assistant travaille : un seul dossier racine</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 800px; height: 1002px; background: #f8fafc; }
+  svg { display: block; }
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1002" viewBox="0 0 800 1002" role="img" aria-labelledby="titre desc">
+  <title id="titre">Où l'assistant travaille : un seul dossier racine, toutes vos sociétés dedans</title>
+  <desc id="desc">Un dossier racine contient les fichiers d'instructions, le dossier 00_CONTEXTE avec l'index unique, et un dossier par société. L'assistant s'ouvre à la racine, jamais dans le dossier d'une seule société.</desc>
+  <defs>
+    <linearGradient id="fond" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="0.55" stop-color="#eef6fb"/>
+      <stop offset="1" stop-color="#e6f4fa"/>
+    </linearGradient>
+    <linearGradient id="bleu" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0ea5e9"/>
+      <stop offset="1" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ecfeff"/>
+      <stop offset="1" stop-color="#dbf4fd"/>
+    </linearGradient>
+    <filter id="ombre" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0f2a4a" flood-opacity="0.07"/>
+    </filter>
+    <style>
+      .sans { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Arial, sans-serif; }
+      .mono { font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+      .kicker { font-size: 14px; letter-spacing: 2.5px; fill: #64748b; font-weight: 600; }
+      .h1 { font-size: 34px; font-weight: 800; fill: #0f172a; letter-spacing: -0.4px; }
+      .sub { font-size: 18px; fill: #475569; }
+      .racine-txt { font-size: 18px; fill: #e0f2fe; }
+      .pilule { font-size: 16px; font-weight: 700; fill: #ffffff; }
+      .puce { fill: #f1f5f9; stroke: #e2e8f0; }
+      .puce-txt { font-size: 16px; fill: #334155; }
+      .legende { font-size: 15px; fill: #64748b; }
+      .ctx-titre { font-size: 20px; font-weight: 700; fill: #075985; }
+      .ctx-fort { font-size: 20px; font-weight: 700; fill: #0f172a; }
+      .ctx-detail { font-size: 15px; fill: #334155; }
+      .carte { fill: #ffffff; stroke: #dbe7f0; }
+      .carte-titre { font-size: 18px; font-weight: 700; fill: #0f172a; }
+      .carte-ligne { font-size: 16px; fill: #334155; }
+      .carte-meme { font-size: 16px; fill: #64748b; }
+      .note { font-size: 16px; fill: #64748b; font-style: italic; }
+      .ok-titre { font-size: 19px; font-weight: 700; fill: #047857; }
+      .ok-txt { font-size: 16px; fill: #065f46; }
+      .non-titre { font-size: 19px; font-weight: 700; fill: #b91c1c; }
+      .non-txt { font-size: 16px; fill: #991b1b; }
+      .bas { font-size: 16px; fill: #475569; }
+      .pied { font-size: 15px; fill: #64748b; }
+    </style>
+  </defs>
+
+  <rect width="800" height="1002" fill="url(#fond)"/>
+
+  <text class="sans kicker" x="40" y="46">KIT ASSISTANT DOCUMENTAIRE · OÙ L'ASSISTANT TRAVAILLE</text>
+  <text class="sans h1" x="40" y="92">Un seul dossier racine,</text>
+  <text class="sans h1" x="40" y="132">toutes vos sociétés dedans</text>
+  <text class="sans sub" x="40" y="168">Il s'ouvre à la racine, voit tout, tient un seul index.</text>
+
+  <!-- Le dossier racine -->
+  <rect x="40" y="196" width="720" height="562" rx="22" fill="#fbfdff" stroke="#67d3f0" stroke-width="2" filter="url(#ombre)"/>
+  <rect x="60" y="216" width="250" height="36" rx="8" fill="#0f172a"/>
+  <text class="mono racine-txt" x="72" y="241">Documents/Entreprise/</text>
+  <rect x="500" y="216" width="240" height="36" rx="18" fill="url(#bleu)"/>
+  <text class="sans pilule" x="620" y="239" text-anchor="middle">✓ l'assistant s'ouvre ici</text>
+
+  <!-- Fichiers à la racine -->
+  <rect class="puce" x="60" y="276" width="108" height="32" rx="8"/>
+  <text class="mono puce-txt" x="71" y="298">CLAUDE.md</text>
+  <rect class="puce" x="176" y="276" width="108" height="32" rx="8"/>
+  <text class="mono puce-txt" x="187" y="298">AGENTS.md</text>
+  <rect class="puce" x="292" y="276" width="108" height="32" rx="8"/>
+  <text class="mono puce-txt" x="303" y="298">GEMINI.md</text>
+  <text class="sans legende" x="412" y="298">instructions permanentes, une par assistant</text>
+
+  <rect class="puce" x="60" y="318" width="147" height="32" rx="8"/>
+  <text class="mono puce-txt" x="71" y="340">OUVRIR_ICI.md</text>
+  <text class="sans legende" x="215" y="340">revenir ici</text>
+  <rect class="puce" x="300" y="318" width="118" height="32" rx="8"/>
+  <text class="mono puce-txt" x="311" y="340">_corbeille/</text>
+  <text class="sans legende" x="426" y="340">corbeille du kit, quand le système n'en a pas</text>
+
+  <rect class="puce" x="60" y="360" width="262" height="32" rx="8"/>
+  <text class="mono puce-txt" x="71" y="382">.claude/ .gemini/ .agents/</text>
+  <text class="sans legende" x="330" y="382">commandes, un format par assistant</text>
+  <rect class="puce" x="596" y="360" width="70" height="32" rx="8"/>
+  <text class="mono puce-txt" x="607" y="382">.kit/</text>
+  <text class="sans legende" x="674" y="382">mises à jour</text>
+
+  <!-- 00_CONTEXTE : l'index unique -->
+  <rect x="60" y="408" width="680" height="96" rx="16" fill="url(#cyan)" stroke="#67d3f0" stroke-width="1.5"/>
+  <text class="mono ctx-titre" x="80" y="446">00_CONTEXTE/</text>
+  <text class="sans ctx-fort" x="250" y="446">un seul index pour toutes vos sociétés</text>
+  <text class="sans ctx-detail" x="250" y="476">sociétés · cartographie · règles · journal · index.db</text>
+
+  <!-- Une société = un dossier -->
+  <rect class="carte" x="60" y="528" width="330" height="170" rx="16" filter="url(#ombre)"/>
+  <text class="mono carte-titre" x="80" y="558">SOCIETE_EXPLOITATION/</text>
+  <text class="mono carte-ligne" x="80" y="592">a_trier/   a_valider/</text>
+  <text class="mono carte-ligne" x="80" y="618">a_supprimer/   archives/</text>
+  <text class="mono carte-ligne" x="80" y="644">01_Societe/</text>
+  <text class="mono carte-ligne" x="80" y="670">02_Comptabilite/</text>
+
+  <rect class="carte" x="405" y="528" width="160" height="170" rx="16" filter="url(#ombre)"/>
+  <text class="mono carte-titre" x="425" y="558">HOLDING/</text>
+  <text class="sans carte-meme" x="425" y="592">même structure</text>
+
+  <rect class="carte" x="580" y="528" width="160" height="170" rx="16" filter="url(#ombre)"/>
+  <text class="mono carte-titre" x="600" y="558">SCI/</text>
+  <text class="sans carte-meme" x="600" y="592">même structure</text>
+
+  <text class="sans note" x="400" y="734" text-anchor="middle">une société = un dossier</text>
+
+  <!-- Où ouvrir, où ne jamais ouvrir -->
+  <rect x="40" y="782" width="350" height="90" rx="16" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5"/>
+  <text class="sans ok-titre" x="60" y="816">✓ Ouvrez-le à la racine</text>
+  <text class="sans ok-txt" x="60" y="846">il voit toutes vos sociétés</text>
+
+  <rect x="410" y="782" width="350" height="90" rx="16" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5"/>
+  <text class="sans non-titre" x="430" y="816">✕ Pas dans une seule société</text>
+  <text class="sans non-txt" x="430" y="846">il ne verrait qu'elle</text>
+
+  <text class="sans bas" x="400" y="904" text-anchor="middle">Dès la première fois, ouvrez-le dans le dossier qui contiendra tous vos documents.</text>
+  <text class="sans bas" x="400" y="930" text-anchor="middle">La fois suivante, relancez-le au même endroit.</text>
+
+  <text class="sans pied" x="40" y="970">Serdar Arikan · DGU Consulting</text>
+  <text class="sans pied" x="760" y="970" text-anchor="end">dgu-consulting.fr</text>
+</svg>
+</body>
+</html>
