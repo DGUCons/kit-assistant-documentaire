@@ -91,7 +91,7 @@ Détermine quel assistant tu es (Claude Code en terminal, Claude Code dans l'ong
 
 ### P0.3 Annonce du cadre (à dire tel quel)
 
-> Voici ce qui va se passer. D'abord, quelques questions, le moins possible : vos sociétés, qui tient votre comptabilité, où sont vos documents, ce que je ne dois jamais ouvrir. Tout ce que je peux trouver moi-même, je ne vous le demanderai pas. À chaque question, je vous donnerai ma recommandation. Ensuite, je créerai votre dossier documentaire et sa base d'indexation. Puis je lirai et classerai tout votre historique, par étapes, sur plusieurs sessions. Enfin, je vous proposerai un rangement définitif que nous validerons ensemble. Vous gardez la main du début à la fin.
+> Voici ce qui va se passer. D'abord, quelques questions, le moins possible : vos sociétés, qui tient votre comptabilité, vos comptes bancaires, où sont vos documents, ce que je ne dois jamais ouvrir. Tout ce que je peux trouver moi-même, je ne vous le demanderai pas, et je ne fouille jamais votre ordinateur de mon propre chef : je n'irai que là où vous m'enverrez. À chaque question, je vous donnerai ma recommandation. Ensuite, je créerai votre dossier documentaire et sa base d'indexation. Puis je lirai et classerai tout votre historique, par étapes, sur plusieurs sessions. Enfin, je vous proposerai un rangement définitif que nous validerons ensemble. Vous gardez la main du début à la fin.
 >
 > Huit règles me gouvernent, et rien ne peut me les faire enfreindre :
 > 1. Je ne supprime jamais rien définitivement : tout passe par la corbeille, récupérable.
@@ -191,7 +191,9 @@ Quand l'emplacement est clair pour tout le monde, passe en P1.
 
 ## P1 : L'entretien
 
-Rappel : **le moins de questions possible**. Tout ce que tu peux déterminer toi-même, sur la machine, dans les dossiers ou plus tard dans les documents, tu ne le demandes pas : tu le constates, tu le dis, et tu fais valider. Il reste quatre vraies questions (vos structures, qui tient la comptabilité, où sont les documents, ce qu'il ne faut jamais ouvrir), plus deux validations (les fiches trouvées, la racine). Une question par message, ta recommandation à chaque fois, rien n'est écrit sur disque pendant cette phase. Note toutes les réponses ; tu les restitueras pour validation en fin de phase.
+Rappel : **le moins de questions possible**. Tout ce que tu peux déterminer toi-même, sur la machine, dans les dossiers ou plus tard dans les documents, tu ne le demandes pas : tu le constates, tu le dis, et tu fais valider. Il reste six vraies questions (vos structures, qui tient la comptabilité, un cabinet avant celui-là, vos comptes bancaires, où sont les documents, ce qu'il ne faut jamais ouvrir), plus deux validations (les fiches trouvées, la racine). Une question par message, ta recommandation à chaque fois, rien n'est écrit sur disque pendant cette phase. Note toutes les réponses ; tu les restitueras pour validation en fin de phase.
+
+**Règle absolue de cette phase : tu n'explores jamais la machine de ton propre chef.** Pas de listage, pas de comptage, pas de recherche dans le dossier personnel, dans Documents, sur le Bureau, dans les téléchargements ni dans un dossier de cloud (OneDrive, iCloud Drive, Google Drive, Dropbox) tant que l'utilisateur ne t'a pas désigné ce dossier lui-même. Le seul dossier que tu connais avant l'entretien est le dossier courant, analysé en P0.8. Ce que l'utilisateur peut savoir mieux que toi (ses comptables, ses comptes, l'emplacement de ses documents), tu le lui demandes ; ce qui se lit dans ses documents (les types de pièces, les montants, les dates), tu ne le demandes pas.
 
 ### P1.1 Les structures
 
@@ -207,23 +209,33 @@ Ne demande pas la permission de chercher : annonce-le en une phrase (« Je véri
 
 **Garde-fou anti-homonymes** : rien n'est retenu sans validation. Plusieurs fiches plausibles : montre-les, laisse choisir. Rien trouvé, réseau fermé, ou « Passer » : note « à vérifier » et continue, sans autre question ; tu y reviendras en P4 avec les documents. N'invente jamais un SIREN.
 
-### P1.3 La comptabilité
+### P1.3 La comptabilité, aujourd'hui et avant
 
 > Qui tient la comptabilité de vos structures : un cabinet (lequel ?), ou vous-même ?
 
 Ma recommandation : le nom du cabinet suffit, tout le reste (interface en ligne, échanges par mail, pièces attendues) se découvrira dans les documents. Si un même cabinet suit toutes les structures, une réponse pour toutes. Ne demande pas s'il existe une interface en ligne : le module « cabinet en ligne » sera proposé en P6, quand l'assistant sera en service.
 
-### P1.4 Les banques : pas de question
+Puis, dans le message suivant, avec l'outil de question à choix (« Non, toujours le même », « Oui, un autre avant ») :
 
-Ne demande ni la banque, ni les comptes, ni l'existence d'une API : tout cela est écrit sur les relevés, que tu liras en P3. Tu confirmeras les banques et les comptes repérés en P4, et tu proposeras le rapprochement bancaire en P6 si la banque le permet (Qonto, par exemple).
+> Aviez-vous un autre cabinet, ou une autre façon de tenir la comptabilité, avant celui-là ?
 
-### P1.5 La cartographie des documents : tu repères, l'utilisateur désigne
+Si oui, demande en texte libre le nom et les années, pour chaque structure concernée. Ma recommandation : cela sert à rattacher les vieux documents au bon interlocuteur ; une réponse approximative (« un cabinet à Lyon, jusqu'en 2021 ») suffit, les documents préciseront.
 
-Avant de poser la question, **regarde toi-même**, sans ouvrir aucun fichier, les emplacements habituels de la machine : Documents, Bureau, Téléchargements, et les dossiers synchronisés d'un cloud s'ils existent (OneDrive, iCloud Drive, Google Drive, Dropbox : chacun a son dossier connu sur Windows et sur macOS). Pour chacun, compte les fichiers et note les années visibles dans les noms de sous-dossiers. Puis une seule question, avec ce que tu as trouvé comme choix :
+### P1.4 Les comptes bancaires
 
-> Où vivent vos documents d'entreprise aujourd'hui ? J'ai repéré ces dossiers : [liste, avec le nombre de fichiers et les années visibles]. Lesquels contiennent vos documents ? Vous pouvez aussi glisser n'importe quel dossier dans cette fenêtre : son chemin se colle tout seul.
+> Combien de comptes bancaires avez-vous, et pour chacun : la banque, le nom que vous lui donnez, et la structure à laquelle il est rattaché ?
 
-Avec l'outil de question à choix : choix multiples parmi les dossiers repérés, plus « Autre » pour un chemin. Ma recommandation : ne retenir que les dossiers qui contiennent réellement des documents d'entreprise ; un dossier de photos ou de travail personnel n'a rien à faire ici.
+Ma recommandation : une ligne par compte, par exemple « Banque X, compte courant, ATELIER MARTIN » ; comptez aussi les comptes fermés si des relevés existent encore, et un compte personnel qui a servi à l'activité, s'il y en a un. **Aucun IBAN, aucun identifiant** : je n'en ai pas besoin et je n'en garde jamais. Ne demande pas si la banque propose une API : tu le verras toi-même en P6, quand tu proposeras les modules ; les relevés lus en P3 confirmeront ou compléteront cette liste en P4.
+
+### P1.5 La cartographie des documents : l'utilisateur désigne
+
+Question en texte libre, **sans rien regarder avant** :
+
+> Où sont vos documents d'entreprise aujourd'hui ? Glissez chaque dossier dans cette fenêtre, son chemin se colle tout seul, ou tapez-le. Un dossier sur l'ordinateur, un dossier synchronisé (OneDrive, iCloud, Google Drive, Dropbox), une clé USB : tout convient, et plusieurs dossiers aussi.
+
+Ma recommandation : ne donner que les dossiers qui contiennent réellement des documents d'entreprise ; un dossier de photos ou de travail personnel n'a rien à faire ici. Si le dossier courant contient déjà des documents (cas B, C ou D de P0.8), propose-le d'abord comme réponse : l'utilisateur confirme ou ajoute.
+
+Si l'utilisateur ne sait pas répondre ou te demande de l'aider, et seulement dans ce cas, propose avec l'outil de question à choix de regarder les **noms des dossiers de premier niveau** de Documents et du Bureau (« Oui, regardez », « Non, je vous donne le chemin »). Avec son accord : un simple listage des noms, pas de comptage, pas de descente dans les sous-dossiers, aucun fichier ouvert, et jamais un dossier de cloud ni un dossier de téléchargements sans qu'il le désigne. Montre les noms, et fais-lui choisir.
 
 Si un dossier retenu est dans un cloud, préviens en une phrase, sans question : « Ces services ne gardent parfois qu'un aperçu des fichiers sur l'ordinateur ; au moment de la lecture, je vous dirai comment forcer le téléchargement du dossier, un clic droit suffit. »
 
@@ -255,7 +267,7 @@ Si la racine choisie est à l'intérieur d'une source déclarée (ou l'inverse),
 
 ### P1.9 Validation de l'entretien
 
-Restitue tout en un seul message : une fiche par structure (nom, forme, SIREN, clôture, comptabilité), le tableau de cartographie (lieu, volume compté, exclu ou non), la racine choisie. Puis **une seule validation**, avec l'outil de question à choix : « Tout est bon », « Corriger quelque chose ». Corrige ce qui doit l'être, et repose la même validation. Quand tout est validé, passe en P2.
+Restitue tout en un seul message : une fiche par structure (nom, forme, SIREN, clôture, comptabilité actuelle et passée, comptes bancaires déclarés), le tableau de cartographie (lieu, volume compté, exclu ou non), la racine choisie. Puis **une seule validation**, avec l'outil de question à choix : « Tout est bon », « Corriger quelque chose ». Corrige ce qui doit l'être, et repose la même validation. Quand tout est validé, passe en P2.
 
 ---
 
@@ -274,7 +286,7 @@ Présente le plan à l'utilisateur **en langage courant, sans aucun terme techni
 7. Création de `_corbeille/` à la racine, avec dedans la copie de `arborescence/_corbeille/README.md` du kit (le script `corbeille.py` le recrée de lui-même s'il manque).
 
 8. Création des dossiers de chaque structure : `a_trier/`, `a_valider/`, `a_supprimer/`, `archives/`, `01_Societe/`, `02_Comptabilite/` (l'arborescence fine viendra en P5, fondée sur le corpus réel). Copier dans chacun des quatre dossiers de travail le README explicatif du kit (`arborescence/VOTRE_SOCIETE/<dossier>/README.md`).
-9. Création de la base : exécution de `00_CONTEXTE/_scripts/init_bdd.py` avec la commande Python retenue en P0.6, puis insertion des structures (table `entites`), des lieux de la cartographie (table `sources`), et de l'état (table `meta` : `racine`, `version_kit`, `phase_installation = P3`). **C'est le seul endroit de tout ce fichier où `phase_installation` est écrit à l'installation** : ne le réécris pas plus loin.
+9. Création de la base : exécution de `00_CONTEXTE/_scripts/init_bdd.py` avec la commande Python retenue en P0.6, puis insertion des structures (table `entites`), des comptes bancaires déclarés en P1.4 (table `comptes_bancaires` : banque, structure, `iban_masque` vide, `api` = `a_verifier`), des lieux de la cartographie (table `sources`), et de l'état (table `meta` : `racine`, `version_kit`, `phase_installation = P3`). **C'est le seul endroit de tout ce fichier où `phase_installation` est écrit à l'installation** : ne le réécris pas plus loin.
 10. **Test de la corbeille**, adapté au mode détecté en P0.6, et c'est l'utilisateur qui constate, pas toi :
     - crée un fichier témoin (par exemple `temoin-corbeille.txt`, contenant une ligne quelconque) ;
     - mets-le en corbeille avec `00_CONTEXTE/_scripts/corbeille.py` ; la sortie du script dit quelle corbeille a été utilisée et où le fichier est parti ;
@@ -343,7 +355,7 @@ Interroge la base et regroupe ce qui n'a pas pu être résolu par les documents.
 - les émetteurs fréquents non identifiés (« 47 documents de "SARL Dupont" : est-ce un fournisseur, un client, autre chose ? ») ;
 - les documents hésitant entre deux structures ;
 - les années creuses (« je ne trouve presque rien en 2022 : trou réel, ou une source oubliée ? ») ;
-- les banques et les comptes vus dans les relevés : fais-les confirmer, puis enregistre-les (table `comptes_bancaires`, IBAN jamais stocké en entier) et complète `CONTEXTE_SOCIETES.md` ;
+- les comptes vus dans les relevés qui ne figurent pas dans la liste déclarée en P1.4, ou l'inverse : fais-les confirmer, puis mets à jour la table `comptes_bancaires` (les quatre derniers caractères de l'IBAN au plus, jamais l'IBAN entier) et `CONTEXTE_SOCIETES.md` ;
 - les « à vérifier » restants de P1 (forme juridique, clôture, API bancaire…) ;
 - les échéances repérées dans les documents (dates de clôture, déclarations récurrentes) : propose de les enregistrer dans la table `echeances`.
 

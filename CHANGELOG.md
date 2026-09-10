@@ -1,6 +1,14 @@
 # Changelog
 
-## v2.1.1 (2026-09-11)
+## v2.1.2 (2026-09-10)
+
+Correction tirée du deuxième parcours rejoué avec Claude Code.
+
+- L'assistant n'explore plus la machine de lui-même : la v2.1.1 lui faisait repérer et compter les dossiers habituels (Documents, Bureau, clouds) avant de demander où sont les documents, ce qui l'envoyait fouiller un OneDrive entier sans qu'on le lui ait demandé. Désormais il pose la question d'abord (glisser le dossier dans la fenêtre, ou taper le chemin) ; il ne regarde les noms de dossiers de Documents et du Bureau que si l'utilisateur dit ne pas savoir et l'y autorise, sans compter ni descendre, et jamais dans un cloud ni dans les téléchargements sans qu'on les lui désigne. La règle est écrite en tête de l'entretien
+- Deux questions reviennent, parce que l'utilisateur les connaît mieux que les documents : un autre cabinet avant celui d'aujourd'hui (nom et années), et la liste des comptes bancaires (banque, nom du compte, structure rattachée, jamais d'IBAN). Les comptes déclarés sont enregistrés à l'installation ; les relevés lus confirment ou complètent en P4. Les types de documents, l'interface du cabinet et l'API bancaire restent découverts par l'assistant lui-même
+- Date de la v2.1.1 corrigée dans ce journal (publiée le 10 septembre, pas le 11)
+
+## v2.1.1 (2026-09-10)
 
 Corrections tirées du premier parcours complet rejoué avec Claude Code après publication.
 

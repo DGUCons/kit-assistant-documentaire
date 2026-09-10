@@ -11,8 +11,9 @@
 - Code d'activité (APE) : [ou « à vérifier »]
 - Clôture comptable : [JJ mois, ou « à vérifier »]
 - Régime de TVA : [réel mensuel / trimestriel / franchise / non assujetti, ou « à vérifier »]
-- Banque(s) et compte(s) : [complété en P4 d'après les relevés lus ; API disponible : oui/non/à vérifier]
+- Banque(s) et compte(s) : [déclarés à l'entretien : banque, nom du compte, structure ; complétés en P4 d'après les relevés lus ; jamais d'IBAN entier ; API disponible : oui/non/à vérifier]
 - Comptabilité tenue par : [CABINET / moi-même ; interface en ligne, si découverte dans les documents : nom]
+- Comptabilité tenue avant : [ancien cabinet ou ancienne méthode, années ; ou « toujours le même »]
 - Types de documents fréquents : [complété au calibrage, d'après les documents réellement lus]
 - Particularités : [ex. véhicule de société, local loué, salariés, secteur d'activité…]
 
