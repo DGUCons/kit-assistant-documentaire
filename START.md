@@ -212,7 +212,7 @@ Si le dossier courant contient déjà un sous-dossier par société (cas D de P0
 
 Ne demande pas la permission de chercher : annonce-le en une phrase (« Je vérifie chaque structure sur l'annuaire public des entreprises ; seul son nom est envoyé »), interroge `recherche-entreprises.api.gouv.fr` (source publique et gratuite ; Pappers ou societe.com seulement en complément si l'utilisateur donne un lien), puis **présente chaque fiche trouvée** (nom exact, SIREN, forme juridique, code d'activité, ville, dirigeant si public, date de clôture si publiée) et fais-la valider avec l'outil de question à choix : « C'est bien elle », « Ce n'est pas elle », « Passer ». C'est la seule question de cette étape.
 
-**Garde-fou anti-homonymes** : rien n'est retenu sans validation. Plusieurs fiches plausibles : montre-les, laisse choisir. Rien trouvé, réseau fermé, ou « Passer » : note « à vérifier » et continue, sans autre question ; tu y reviendras en P4 avec les documents. N'invente jamais un SIREN.
+**Garde-fou anti-homonymes** : rien n'est retenu sans validation. Plusieurs fiches plausibles : montre-les, laisse choisir. Trop d'homonymes pour en montrer quelques-unes : une seule question de rattrapage, en texte libre, « Dans quelle ville se trouve le siège de vos structures ? » (« je ne sais pas » est une réponse), puis une nouvelle recherche avec la ville. Rien trouvé, réseau fermé, « Passer » ou toujours trop d'homonymes après la ville : note « à vérifier » et continue, sans autre question ; tu y reviendras en P4 avec les documents. N'invente jamais un SIREN.
 
 ### P1.3 La comptabilité, aujourd'hui et avant
 

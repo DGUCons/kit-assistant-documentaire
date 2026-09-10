@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.1.4 (2026-09-10)
+
+- Recherche des sociétés sur l'annuaire public : quand le nom a trop d'homonymes pour en montrer quelques-uns, l'assistant pose une seule question de rattrapage, la ville du siège, puis cherche à nouveau. Toujours rien : « à vérifier », comme avant
+
 ## v2.1.3 (2026-09-10)
 
 - Plus un mot sur les modes de permissions : l'utilisateur n'a pas à savoir dans quel mode tourne son assistant. INSTALLATION.md et la FAQ ne demandent plus de changer de mode, et START.md interdit à l'assistant de parler de réglages, de raccourcis ou de garde-fous internes ; si une commande est refusée, il réessaie, fait la même chose avec les outils du système, ou dit en une phrase simple quelle étape est bloquée
