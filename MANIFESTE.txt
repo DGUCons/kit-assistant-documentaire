@@ -11,14 +11,14 @@
 # Une empreinte `-` : seule la presence du fichier est verifiee.
 
 kit  3b7eaf37a7c89647e3303a32f6b3ef5f2ffff19a217104773aa87a24e8853b4a  .gitignore
-kit  f5f544a0c16df5966887a5250364297b9b9eb4ca89d469f97ab04148e7ddce56  CHANGELOG.md
+kit  6d6fb14ecad803c47b08c164a9aa2686bbb3c64c5ded3c7ecadec589c66167eb  CHANGELOG.md
 kit  68d391d840fa3d8e80aa2562c45309b74265dc4a6cc84c75c10c1a8d81fa77ba  DEMARRAGE.md
-kit  7b9dd6ca1b0f38deb26fe1657aa6c116c609da5f92efd0067cba8a620f781166  INSTALLATION.md
+kit  571cd0f453bcefd7b89c4d98a539f85a177443dd1ff2f9f5a1391ccee173b855  INSTALLATION.md
 kit  791bb5d4d46f30f8d50b3ca04dae52b6e68862c1a0c7a653832568e4cf12ebbc  LICENSE
 kit  -  MANIFESTE.txt
 kit  e8fa5033607a91736e2535bada4c6d17161af20c8ceae927a23f3a1373c2d7d1  README.md
-kit  67475ccb8fb3cc31fb9695e9db34e45425270a943d17a4fe147c52b686d6def1  START.md
-kit  9f6271951edca02e0c8a669a79930626717b77f0443ad8a327b93a52e4194829  VERSION
+kit  9a31c7e8144857d02506d464d41e3ec6208a5d13e8424d2c53c6ca22538536f8  START.md
+kit  eb01a4e8e8922406f15a22cadc3fae28d4f513afe11b4734788eb2ea73cf034e  VERSION
 kit  60f56ec9208e28d84579f892c075cf9c5f95044ea1448ed4fbe22f69ee1012c7  arborescence/VOTRE_SOCIETE/a_supprimer/README.md
 kit  2500c5618dbfb20ebfd3a96151733a17b713b3810f04929c1f148ca990bc28ba  arborescence/VOTRE_SOCIETE/a_trier/README.md
 kit  e7136410685a3ef0ebcea9c6b486102f345754c2697b1ce67849aac74d740412  arborescence/VOTRE_SOCIETE/a_valider/README.md
@@ -28,7 +28,7 @@ kit  7626de8aca86215d01fe490572a44e7c9d68c0c8afa60dbe6ec2f16e73b7551d  docs/capt
 kit  30351fb9e69f865eb19a37a2598aa7869cc8a0e5edc0f0518681f9127c59e3cd  docs/captures/architecture.png
 kit  1b7152eac674046956fdf9709a039fcaad085e8bddb219a3600d9dc4b19694de  docs/captures/racine.html
 kit  ddd2aa5288708c864565d0511e27aca6d8e572f0fee841678456a0b145a4a91d  docs/captures/racine.png
-kit  889438923847a2733e6dca3c179bf78d735dbaff907d6787d8a45ba4a725c2da  docs/faq.md
+kit  53538bf06c488ee4a860e2d61816e773d830d3e6e58a00918204ddc52acc6ea1  docs/faq.md
 kit  53fe355c700c9df28b5aacfa2e4c1e6dba4755d83b527d9c90d05293bf87a284  docs/mise-a-jour.md
 kit  7b431767d4632f6586b7ae99c62dd387fca0991890167511e697327808d197ea  docs/securite.md
 kit  999fe6fff1d17ec9ad1736d746ae3089c7558a6b2ae419f0f6cf900567fc6c93  manifeste.py
@@ -70,7 +70,7 @@ utilisateur  5a51e546063a8beec6eebbd8d93ee08ae8d3657f8f0c32a7f03488930bc39687  m
 utilisateur  9b108c7dbbc022596ef874e25c92cad0f7b63b9d1baf22c8a6799ce8a760a737  modele/00_CONTEXTE/REGLES_CLASSEMENT.md
 kit  5cc7f547e6a7ca047dfef474896200bab1825ca51fa5b07f032bdb4d8b2c013a  modele/00_CONTEXTE/commandes/echeances.md
 kit  3b9d1ad424dd36c1f35b2cbdd0afd377898baaac81ed64e2ab9ea877f4d89ca7  modele/00_CONTEXTE/commandes/indexer.md
-kit  f411048d44a189a7cfafdd0770c0d4e9788e062e64c0d2c2c3f45f2944fa30a9  modele/00_CONTEXTE/commandes/mettre-a-jour.md
+kit  4841a18aa566e149116746f702aa440f261957dc0a9d66b7ec8f734625826777  modele/00_CONTEXTE/commandes/mettre-a-jour.md
 kit  590a5a6963dbc5cfb123bdb01c22e736fd64894c9945b3064a1b8f673a2f8432  modele/00_CONTEXTE/commandes/point-etat.md
 kit  d5b90aba5a1a5a767ffa02ec34025d22f487d0815f4a8d7193fbe36aa681853b  modele/00_CONTEXTE/commandes/preparer-comptable.md
 kit  dd498d1e11ec9dc0a850ed497792018779af57ae984981d1112e2512c08f827e  modele/00_CONTEXTE/commandes/rapprocher.md

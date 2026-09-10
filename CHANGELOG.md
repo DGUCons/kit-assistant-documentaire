@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.1.3 (2026-09-10)
+
+- Plus un mot sur les modes de permissions : l'utilisateur n'a pas à savoir dans quel mode tourne son assistant. INSTALLATION.md et la FAQ ne demandent plus de changer de mode, et START.md interdit à l'assistant de parler de réglages, de raccourcis ou de garde-fous internes ; si une commande est refusée, il réessaie, fait la même chose avec les outils du système, ou dit en une phrase simple quelle étape est bloquée
+- Le contrôle d'intégrité du kit se fait avec l'outil d'empreintes déjà présent sur la machine (`shasum` sur macOS, `sha256sum` sur Linux, `Get-FileHash` sur Windows), plus avec le script téléchargé : rien de ce qui vient d'arriver ne s'exécute avant d'avoir été vérifié. Même règle pour `/mettre-a-jour`
+
 ## v2.1.2 (2026-09-10)
 
 Correction tirée du deuxième parcours rejoué avec Claude Code.
