@@ -11,14 +11,14 @@
 # Une empreinte `-` : seule la presence du fichier est verifiee.
 
 kit  3b7eaf37a7c89647e3303a32f6b3ef5f2ffff19a217104773aa87a24e8853b4a  .gitignore
-kit  2329ac82ee4554f9c8b567fc587f2146140a132768b9150649f10aa6b550b580  CHANGELOG.md
+kit  dba5693387d87ff3b0cb4b7a9302e6aa5cd86d2058ba7e4ac92ff2f8e8613e3c  CHANGELOG.md
 kit  68d391d840fa3d8e80aa2562c45309b74265dc4a6cc84c75c10c1a8d81fa77ba  DEMARRAGE.md
 kit  571cd0f453bcefd7b89c4d98a539f85a177443dd1ff2f9f5a1391ccee173b855  INSTALLATION.md
 kit  791bb5d4d46f30f8d50b3ca04dae52b6e68862c1a0c7a653832568e4cf12ebbc  LICENSE
 kit  -  MANIFESTE.txt
 kit  e8fa5033607a91736e2535bada4c6d17161af20c8ceae927a23f3a1373c2d7d1  README.md
-kit  ebe7395037846d9d7e3a99b4caf13c75cd57d3ca1e6eb952c9682d30a9fac9fb  START.md
-kit  d9dfaecfc0eef124084749758c52bbfcf103fdff00723e3d3b75de29e8f69f2f  VERSION
+kit  3a2890461647e7962afb6713d14bec730fd160772119c8165468de9a8c8e016f  START.md
+kit  e533f272c7ca6274814c1d5858bef6186bd7b6ac3e8e0f676ba1a087e5d08a0f  VERSION
 kit  60f56ec9208e28d84579f892c075cf9c5f95044ea1448ed4fbe22f69ee1012c7  arborescence/VOTRE_SOCIETE/a_supprimer/README.md
 kit  2500c5618dbfb20ebfd3a96151733a17b713b3810f04929c1f148ca990bc28ba  arborescence/VOTRE_SOCIETE/a_trier/README.md
 kit  e7136410685a3ef0ebcea9c6b486102f345754c2697b1ce67849aac74d740412  arborescence/VOTRE_SOCIETE/a_valider/README.md
@@ -30,7 +30,7 @@ kit  1b7152eac674046956fdf9709a039fcaad085e8bddb219a3600d9dc4b19694de  docs/capt
 kit  ddd2aa5288708c864565d0511e27aca6d8e572f0fee841678456a0b145a4a91d  docs/captures/racine.png
 kit  53538bf06c488ee4a860e2d61816e773d830d3e6e58a00918204ddc52acc6ea1  docs/faq.md
 kit  53fe355c700c9df28b5aacfa2e4c1e6dba4755d83b527d9c90d05293bf87a284  docs/mise-a-jour.md
-kit  7b431767d4632f6586b7ae99c62dd387fca0991890167511e697327808d197ea  docs/securite.md
+kit  7cdae33f30db591f3a23a28a1ad4689aebd7ae147f2d6a2fd9b90102a02fb57b  docs/securite.md
 kit  999fe6fff1d17ec9ad1736d746ae3089c7558a6b2ae419f0f6cf900567fc6c93  manifeste.py
 kit  6ca93a1922b0a24eec847c28bcbbec7cb6691631f49b21bef3924699a599e346  modele/.agents/skills/echeances/SKILL.md
 kit  e07e9301c9a4b5f67fe4d77c9cfa660190ae359d2a0c1a67a4a1dfe94b9c8fe2  modele/.agents/skills/indexer/SKILL.md
@@ -52,7 +52,7 @@ kit  9e7c92f3cdffe99fe459d37e35f2639ac8f73ca4cf2592beda8d9d9fa3fa18d6  modele/.c
 kit  793b754ed89500d343c864b7eb51b84d470d6d3a927390d9551f6a593d20b376  modele/.claude/commands/reprendre.md
 kit  a58f51ec84af5e5521aac31398ef61c51609b781aaebd2d0d8f631980146b574  modele/.claude/commands/traiter-a-trier.md
 kit  7589c1c8bab975ec1abd60aa079e35bcf531a52675218b1c32eddb1686a618c2  modele/.claude/commands/verifier.md
-kit  18365c3c62f9522de5ed8f05dd103230ba68da31fd660a4867a40589fc0523a9  modele/.claude/settings.json
+kit  8022314de679d28ccd6b7943bab37362b7c24f647c7153b0cd0c68f49c02c6a7  modele/.claude/settings.json
 kit  7d47bff79c384a73e76bea1fbecb28389e44aa5abbcaf001ed7b766786acc7ab  modele/.gemini/commands/echeances.toml
 kit  245d55ecfa92510e5073c2cadf1f51645d4f001f3491d848469dfc6919ee8826  modele/.gemini/commands/indexer.toml
 kit  d4f99b5675b6f4151664ff4b6845918491efce6f982c33c33194547a1bf4f880  modele/.gemini/commands/mettre-a-jour.toml

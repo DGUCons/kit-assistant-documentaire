@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.1.5 (2026-09-10)
+
+Corrections tirées du troisième parcours rejoué avec Claude Code, de bout en bout.
+
+- Plus jamais un mot d'anglais : si l'outil affiche malgré tout une boîte en anglais (autorisation de lire un dossier hors de la racine), l'assistant l'annonce en français et dit quelle réponse choisir. Pour éviter la boîte elle-même, `.claude/settings.json` reçoit à l'installation la liste des dossiers désignés à l'entretien (`permissions.additionalDirectories`), jamais les dossiers exclus
+- La question sur les réglages personnels de l'assistant disparaît (ancien point 4 de P2.3) : trop technique, et les instructions du dossier sont déjà en place. L'audit des instructions existantes (P0.5) ne cite plus le texte des réglages personnels : une phrase par conflit qui change quelque chose, rien sur le reste, et le sujet n'est plus évoqué ensuite
+- Une question par menu : plusieurs questions dans un même appel de l'outil s'affichent en onglets, et une fausse manipulation les ferme toutes. L'arborescence de chaque structure se valide donc une par une
+- Tout s'exécute depuis la racine : l'assistant ne change jamais de dossier courant pour lancer un script
+- Les « à vérifier » de P4 (date de clôture, forme juridique) se posent en menu quand la réponse s'y prête ; l'assistant se présente en une phrase, sans se décrire comme un outil de développement
+
 ## v2.1.4 (2026-09-10)
 
 - Recherche des sociétés sur l'annuaire public : quand le nom a trop d'homonymes pour en montrer quelques-uns, l'assistant pose une seule question de rattrapage, la ville du siège, puis cherche à nouveau. Toujours rien : « à vérifier », comme avant
