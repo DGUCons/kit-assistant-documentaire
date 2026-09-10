@@ -11,9 +11,9 @@
 - Code d'activité (APE) : [ou « à vérifier »]
 - Clôture comptable : [JJ mois, ou « à vérifier »]
 - Régime de TVA : [réel mensuel / trimestriel / franchise / non assujetti, ou « à vérifier »]
-- Banque(s) et compte(s) : [BANQUE ; API disponible : oui/non/à vérifier]
-- Comptabilité tenue par : [CABINET (interface en ligne : nom, ou aucune) / interne / moi-même]
-- Types de documents fréquents : [liste cochée à l'entretien]
+- Banque(s) et compte(s) : [complété en P4 d'après les relevés lus ; API disponible : oui/non/à vérifier]
+- Comptabilité tenue par : [CABINET / moi-même ; interface en ligne, si découverte dans les documents : nom]
+- Types de documents fréquents : [complété au calibrage, d'après les documents réellement lus]
 - Particularités : [ex. véhicule de société, local loué, salariés, secteur d'activité…]
 
 ## Structure 2 (dupliquer ou supprimer selon le cas)
@@ -25,5 +25,5 @@
 
 - Dossiers exclus (jamais lus par l'assistant) : [LISTE ou « aucun »]
 - Historique des prestataires à connaître (anciens cabinets, anciennes banques) : [utile pour rattacher les vieux documents]
-- Modules en attente / actifs : [rapprochement bancaire : en attente/actif · cabinet en ligne : en attente/actif/indisponible · enrichissement légal : utilisé le …]
+- Modules proposés / actifs : [rapprochement bancaire : proposé en P6/actif · cabinet en ligne : proposé en P6/actif/indisponible · enrichissement légal : utilisé le …]
 - Conventions personnelles : [tout ce que l'assistant doit savoir sur vos habitudes]

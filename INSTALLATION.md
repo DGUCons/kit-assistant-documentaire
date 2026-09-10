@@ -22,12 +22,14 @@ Deux remarques honnêtes. Le kit a été mis au point d'abord avec Claude Code, 
 1. Installez Claude Code en suivant la page officielle : [code.claude.com/docs](https://code.claude.com/docs).
 2. Connectez-vous avec votre compte Claude.
 3. Placez-vous dans le dossier prévu (`cd` vers ce dossier), puis lancez `claude`.
+4. Gardez le mode de permissions par défaut : l'assistant vous demande votre accord avant chaque commande, vous validez d'une touche. La ligne du bas de la fenêtre indique le mode en cours ; si elle affiche « auto mode », appuyez sur `shift+tab` jusqu'à revenir au mode par défaut. Le mode auto décide seul et refuse les scripts du kit.
 
 ### Application Claude, onglet « Code »
 
 1. Téléchargez l'application depuis [claude.com/claude-code](https://claude.com/claude-code), installez-la (suivant, suivant, terminer sur Windows ; glisser dans Applications sur macOS) et connectez-vous.
 2. Ouvrez l'onglet « Code ».
 3. **Avant d'écrire le premier message**, utilisez le sélecteur de dossier de projet (« Project Folder ») au-dessus de la zone de saisie et choisissez votre dossier. L'application le garde ensuite dans ses dossiers récents : les fois suivantes sont immédiates.
+4. Gardez le mode de permissions par défaut, celui où l'assistant demande votre accord avant chaque commande : le mode auto refuse les scripts du kit.
 
 L'application de bureau n'existe pas sur Linux : utilisez le terminal.
 

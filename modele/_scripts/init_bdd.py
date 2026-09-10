@@ -8,6 +8,7 @@ Usage : python3 init_bdd.py
 
 from __future__ import annotations
 
+import argparse
 import sqlite3
 
 import bdd
@@ -187,6 +188,9 @@ MIGRATIONS = {2: [migration_2]}
 
 def main() -> None:
     sortie.configurer()
+    argparse.ArgumentParser(
+        description="Crée la base 00_CONTEXTE/index.db (ou applique les migrations de schéma si elle existe)."
+    ).parse_args()
     creation = not bdd.CHEMIN_BDD.exists()
     conn = bdd.connexion(creer=True)
     # executescript() valide la transaction en cours : jamais dans un bloc `with conn`.

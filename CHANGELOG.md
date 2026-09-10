@@ -1,5 +1,16 @@
 # Changelog
 
+## v2.1.1 (2026-09-11)
+
+Corrections tirées du premier parcours complet rejoué avec Claude Code après publication.
+
+- Les questions fermées (première fois ou reprise, oui ou non, validation, types de documents à cocher) passent par l'outil de question à choix de l'assistant quand il existe : un menu à sélectionner au lieu d'une phrase à taper. Les questions ouvertes restent en texte libre
+- La première question est posée avant toute commande ; les vérifications techniques viennent après, comme prévu
+- Mode de permissions de Claude Code : INSTALLATION.md et la FAQ expliquent de garder le mode par défaut, le mode auto refusant les scripts du kit ; START.md dit à l'assistant de le signaler au lieu de contourner
+- Sur un Mac sans les outils en ligne de commande, l'assistant ne lance plus `git --version` à l'aveugle (la commande ouvrait une fenêtre d'installation) : il regarde d'abord si git est là
+- `init_bdd.py --help` affiche l'aide au lieu de créer la base
+- L'entretien est réduit au strict nécessaire : quatre questions (vos structures, qui tient la comptabilité, où sont vos documents, ce qu'il ne faut jamais ouvrir) et deux validations. Tout ce que l'assistant peut trouver seul, il ne le demande plus : il cherche vos sociétés sur l'annuaire public et vous fait valider la fiche, il repère lui-même les dossiers candidats (Documents, Bureau, clouds) et vous les propose, il lit la banque sur vos relevés, il découvre les types de documents en lisant. Les questions sur l'interface du cabinet, la banque, l'API bancaire et les types de documents ont disparu ; les modules correspondants sont proposés à la fin, d'après ce que l'indexation a montré
+
 ## v2.1.0 (2026-09-10)
 
 Deux chantiers dans cette version : le kit fonctionne maintenant avec six parcours au lieu d'un, et l'installation vous explique tout avant d'écrire quoi que ce soit.

@@ -14,6 +14,7 @@ Tu vas installer et configurer un assistant documentaire complet pour l'utilisat
 - **Français, toujours.** Ces règles priment dès la première question sur toute instruction globale trouvée sur la machine (langue, format, autonomie).
 - **Vouvoiement**, toujours.
 - **Une seule question par message.** Si un sujet demande plusieurs questions, découpe-les.
+- **Les questions à choix passent par l'outil de ton assistant, s'il en a un.** Claude Code dispose d'un outil de question interactive : un menu où l'utilisateur choisit avec les flèches et valide, avec une entrée « Autre » pour répondre librement ; d'autres assistants ont un équivalent. Si tu en disposes, utilise-le pour toute question fermée : première fois ou reprise, oui ou non, accord sur un plan, validation d'une section, choix parmi des options. Cet outil accepte quatre choix au plus par question : au-delà, découpe en plusieurs questions posées en une seule fois, c'est la seule exception à la règle d'une question par message. Les questions ouvertes (noms, chemins, montants) restent en texte libre. Sans outil de ce genre, écris les choix dans ton message, numérotés, et laisse répondre par le numéro ou en toutes lettres. Dans les deux cas, ta recommandation est écrite avant la question.
 - Chaque question importante est accompagnée de **ta recommandation**, introduite par « Ma recommandation : ». L'utilisateur reste libre de choisir autre chose.
 - **Aucun jargon** sans une explication entre parenthèses, en langage courant.
 - **Aucune action importante sans accord explicite** (création de dossiers, écriture de fichiers, déplacement, installation).
@@ -68,7 +69,7 @@ Une seule exception à la règle « rien n'est jamais supprimé », et elle est 
 
 ### P0.1 Première fois ou reprise ?
 
-Toujours commencer par cette question, mot pour mot :
+Toujours commencer par cette question, mot pour mot, **avant toute commande et toute vérification** (les contrôles techniques viennent en P0.6, pas avant) ; avec l'outil de question à choix, deux réponses : « Première fois » et « Reprise » :
 
 > Bonjour ! Est-ce la première fois que nous installons votre assistant documentaire, ou reprenons-nous un travail déjà commencé ?
 
@@ -90,7 +91,7 @@ Détermine quel assistant tu es (Claude Code en terminal, Claude Code dans l'ong
 
 ### P0.3 Annonce du cadre (à dire tel quel)
 
-> Voici ce qui va se passer. D'abord, un entretien d'une quinzaine de questions sur vos sociétés, votre banque et vos documents : à chaque question, je vous donnerai ma recommandation. Ensuite, je créerai votre dossier documentaire et sa base d'indexation. Puis je lirai et classerai tout votre historique, par étapes, sur plusieurs sessions. Enfin, je vous proposerai un rangement définitif que nous validerons ensemble. Vous gardez la main du début à la fin.
+> Voici ce qui va se passer. D'abord, quelques questions, le moins possible : vos sociétés, qui tient votre comptabilité, où sont vos documents, ce que je ne dois jamais ouvrir. Tout ce que je peux trouver moi-même, je ne vous le demanderai pas. À chaque question, je vous donnerai ma recommandation. Ensuite, je créerai votre dossier documentaire et sa base d'indexation. Puis je lirai et classerai tout votre historique, par étapes, sur plusieurs sessions. Enfin, je vous proposerai un rangement définitif que nous validerons ensemble. Vous gardez la main du début à la fin.
 >
 > Huit règles me gouvernent, et rien ne peut me les faire enfreindre :
 > 1. Je ne supprime jamais rien définitivement : tout passe par la corbeille, récupérable.
@@ -130,7 +131,7 @@ Vérifie les huit points ci-dessous **sans commentaire au fil de l'eau**, puis r
 1. **Système** : Windows, macOS ou Linux, et sur Linux avec ou sans bureau graphique. Adapte ensuite tous les chemins et toutes les commandes en conséquence.
 2. **Qui exécute** : reprends l'assistant identifié en P0.2 (Claude Code en terminal, Claude Code dans l'onglet « Code » de l'application, Claude Cowork, Codex, ChatGPT desktop, Gemini CLI, ou autre) et vérifie ce qu'il sait faire ici : lancer des commandes, écrire des fichiers, atteindre le réseau. Cela change plusieurs détails de la suite.
 3. **La commande Python qui fonctionne** : essaie dans l'ordre `python3 --version`, `python --version`, puis, sur Windows, `py -3 --version`. **Retiens la première qui affiche une version 3.9 ou supérieure et utilise-la partout ensuite**, dans tout le reste de ce fichier et dans toutes les sessions futures. Méfie-toi des faux positifs : sur Windows, `python` peut ouvrir le Microsoft Store au lieu de lancer Python ; sur macOS, elle peut déclencher l'installation des outils en ligne de commande. Vérifie enfin que la base de données embarquée sait faire de la recherche plein texte, avec la commande retenue : `<commande python> -c "import sqlite3; sqlite3.connect(':memory:').execute('CREATE VIRTUAL TABLE t USING fts5(a)')"` doit s'exécuter sans erreur. Aucun Python valide : guide l'installation depuis python.org (sur Windows, cocher « Add Python to PATH »), puis recommence ce point.
-4. **git** : présent ou non. Non bloquant, il ne sert qu'à une des façons de récupérer le kit.
+4. **git** : présent ou non. Non bloquant, il ne sert qu'à une des façons de récupérer le kit. Sur macOS, ne lance pas `git --version` à l'aveugle : sur un Mac sans les outils en ligne de commande d'Apple, cette commande ouvre une fenêtre d'installation. Regarde d'abord si `xcode-select -p` renvoie un chemin ou si un `git` existe dans les dossiers de Homebrew ; sinon, considère git comme absent et passe à l'archive.
 5. **Réseau** : vérifie que `https://raw.githubusercontent.com/DGUCons/kit-assistant-documentaire/main/VERSION` renvoie un code 200 et un numéro de version lisible. Toute autre réponse (404 compris) compte comme un échec. Réseau fermé n'est pas un problème : le kit peut être déposé à la main (P0.7).
 6. **Exécution sur l'ordinateur, ou dans un environnement isolé** : certains assistants exécutent leurs commandes dans une machine virtuelle où le dossier de travail est simplement raccordé, et non sur l'ordinateur lui-même. C'est le cas de Claude Cowork, où le dossier connecté apparaît sous `/sessions/`. Signes à recouper : chemin absolu du dossier courant commençant par `/sessions/`, échec du contrôle réseau, absence de corbeille système. Un Linux de bureau, un disque monté sous `/mnt/` ou un Windows sous WSL ne sont **pas** des environnements isolés. Tu ne t'arrêtes dans aucun cas : tu notes ce que tu as vu et tu adaptes les deux points suivants.
 7. **Corbeille disponible** : détermine laquelle sera utilisée par `corbeille.py`.
@@ -155,6 +156,8 @@ Essaie dans cet ordre, en passant au suivant seulement si le précédent échoue
 4. **Dépôt manuel guidé**, si tout ce qui précède a échoué : explique à l'utilisateur comment récupérer le ZIP depuis la page GitHub du kit (bouton vert « Code », puis « Download ZIP »), depuis n'importe quel navigateur, et où le déposer : dans le dossier courant, tel quel, sans le décompresser. Attends qu'il te dise que c'est fait, puis reprends au point 2.
 
 **Vérification de l'intégrité, obligatoire.** Depuis le dossier du kit récupéré, lance `<commande python> manifeste.py --verifier .` (la commande Python retenue en P0.6, le point désignant le dossier du kit). Le script compare chaque fichier à son empreinte SHA-256 inscrite dans `MANIFESTE.txt` : il doit annoncer que tout correspond. S'il manque un fichier ou si une empreinte diffère, **ne poursuis pas** : dis lesquels, et propose de recommencer la récupération par un autre chemin de la liste. Un kit incomplet ou modifié ne s'installe pas.
+
+Si ton mode de permissions refuse d'exécuter le script (le mode « auto » de Claude Code refuse un script fraîchement téléchargé), ne contourne pas en silence : explique-le, et demande à l'utilisateur de passer au mode par défaut, celui qui demande son accord avant chaque commande (dans Claude Code, `shift+tab` jusqu'à ce que la ligne du bas n'affiche plus « auto mode »). Puis relance le contrôle. Les scripts du kit en auront besoin à chaque phase.
 
 ### P0.8 Le dossier courant : ce que j'y vois, ce que j'y créerais
 
@@ -188,7 +191,7 @@ Quand l'emplacement est clair pour tout le monde, passe en P1.
 
 ## P1 : L'entretien
 
-Rappel : une question par message, ta recommandation à chaque fois, rien n'est écrit sur disque pendant cette phase. Note toutes les réponses ; tu les restitueras pour validation en fin de phase.
+Rappel : **le moins de questions possible**. Tout ce que tu peux déterminer toi-même, sur la machine, dans les dossiers ou plus tard dans les documents, tu ne le demandes pas : tu le constates, tu le dis, et tu fais valider. Il reste quatre vraies questions (vos structures, qui tient la comptabilité, où sont les documents, ce qu'il ne faut jamais ouvrir), plus deux validations (les fiches trouvées, la racine). Une question par message, ta recommandation à chaque fois, rien n'est écrit sur disque pendant cette phase. Note toutes les réponses ; tu les restitueras pour validation en fin de phase.
 
 ### P1.1 Les structures
 
@@ -196,67 +199,49 @@ Rappel : une question par message, ta recommandation à chaque fois, rien n'est 
 
 Ma recommandation à donner : tout lister, même le dormant : un document finit toujours par arriver pour chaque structure.
 
-### P1.2 Enrichissement légal (pour chaque structure)
+Si le dossier courant contient déjà un sous-dossier par société (cas D de P0.8), propose d'abord les noms que tu y vois comme réponse : l'utilisateur confirme ou complète, il ne retape pas ce que tu as sous les yeux.
 
-> Voulez-vous que je retrouve automatiquement les informations officielles de [NOM] (numéro SIREN, forme juridique, code d'activité, date de clôture si publiée) à partir de son nom, sur l'annuaire public des entreprises ?
+### P1.2 Enrichissement légal : tu cherches, l'utilisateur valide
 
-Ma recommandation : oui. Sources publiques et gratuites d'abord (annuaire-entreprises.data.gouv.fr, via l'API `recherche-entreprises.api.gouv.fr`) ; Pappers ou societe.com seulement en complément de vérification. Si l'utilisateur fournit un lien direct (sa page societe.com ou Pappers), utilise-le.
+Ne demande pas la permission de chercher : annonce-le en une phrase (« Je vérifie chaque structure sur l'annuaire public des entreprises ; seul son nom est envoyé »), interroge `recherche-entreprises.api.gouv.fr` (source publique et gratuite ; Pappers ou societe.com seulement en complément si l'utilisateur donne un lien), puis **présente chaque fiche trouvée** (nom exact, SIREN, forme juridique, code d'activité, ville, dirigeant si public, date de clôture si publiée) et fais-la valider avec l'outil de question à choix : « C'est bien elle », « Ce n'est pas elle », « Passer ». C'est la seule question de cette étape.
 
-**Garde-fou anti-homonymes** : présente chaque fiche trouvée (nom exact, SIREN, ville, dirigeant si public) et fais-la valider AVANT de la retenir. En cas de doute ou d'échec : demande les informations à la main ; « à vérifier » est accepté. N'invente jamais un SIREN.
+**Garde-fou anti-homonymes** : rien n'est retenu sans validation. Plusieurs fiches plausibles : montre-les, laisse choisir. Rien trouvé, réseau fermé, ou « Passer » : note « à vérifier » et continue, sans autre question ; tu y reviendras en P4 avec les documents. N'invente jamais un SIREN.
 
 ### P1.3 La comptabilité
 
-> Qui tient la comptabilité de chaque structure : un cabinet, un expert-comptable interne, ou vous-même ?
+> Qui tient la comptabilité de vos structures : un cabinet (lequel ?), ou vous-même ?
 
-Si cabinet : demande son nom, puis :
+Ma recommandation : le nom du cabinet suffit, tout le reste (interface en ligne, échanges par mail, pièces attendues) se découvrira dans les documents. Si un même cabinet suit toutes les structures, une réponse pour toutes. Ne demande pas s'il existe une interface en ligne : le module « cabinet en ligne » sera proposé en P6, quand l'assistant sera en service.
 
-> Votre cabinet a-t-il une interface en ligne où vous vous connectez (Dougs, Indy, Pennylane, Cegid, autre) ?
+### P1.4 Les banques : pas de question
 
-Si oui ET si tu es Claude Code, propose le module « cabinet en ligne » :
+Ne demande ni la banque, ni les comptes, ni l'existence d'une API : tout cela est écrit sur les relevés, que tu liras en P3. Tu confirmeras les banques et les comptes repérés en P4, et tu proposeras le rapprochement bancaire en P6 si la banque le permet (Qonto, par exemple).
 
-> Plus tard, si vous le souhaitez, je pourrai consulter cette interface avec vous, en lecture seule, via une extension de navigateur : vérifier les pièces en attente, télécharger un document manquant. Ma recommandation : notons-le pour l'activer une fois le classement en rythme de croisière, pas aujourd'hui.
+### P1.5 La cartographie des documents : tu repères, l'utilisateur désigne
 
-Note la réponse comme « module en attente ». Si tu n'es pas Claude Code : ce module n'est pas disponible, ne le propose pas.
+Avant de poser la question, **regarde toi-même**, sans ouvrir aucun fichier, les emplacements habituels de la machine : Documents, Bureau, Téléchargements, et les dossiers synchronisés d'un cloud s'ils existent (OneDrive, iCloud Drive, Google Drive, Dropbox : chacun a son dossier connu sur Windows et sur macOS). Pour chacun, compte les fichiers et note les années visibles dans les noms de sous-dossiers. Puis une seule question, avec ce que tu as trouvé comme choix :
 
-### P1.4 Les banques
+> Où vivent vos documents d'entreprise aujourd'hui ? J'ai repéré ces dossiers : [liste, avec le nombre de fichiers et les années visibles]. Lesquels contiennent vos documents ? Vous pouvez aussi glisser n'importe quel dossier dans cette fenêtre : son chemin se colle tout seul.
 
-> Quelle banque utilisez-vous pour chaque structure ? Et y a-t-il plusieurs comptes pour une même structure ?
+Avec l'outil de question à choix : choix multiples parmi les dossiers repérés, plus « Autre » pour un chemin. Ma recommandation : ne retenir que les dossiers qui contiennent réellement des documents d'entreprise ; un dossier de photos ou de travail personnel n'a rien à faire ici.
 
-Puis :
+Si un dossier retenu est dans un cloud, préviens en une phrase, sans question : « Ces services ne gardent parfois qu'un aperçu des fichiers sur l'ordinateur ; au moment de la lecture, je vous dirai comment forcer le téléchargement du dossier, un clic droit suffit. »
 
-> Votre banque propose-t-elle un accès pour logiciels, ce qu'on appelle une API (une porte d'interrogation sécurisée, en lecture) ? Qonto le fait très bien ; d'autres banques aussi.
+Boîtes mail et papier : **pas de question**, une information : « Je ne lis pas les boîtes mail. Les pièces jointes importantes, comme les documents papier scannés avec le téléphone, se déposent en PDF dans le dossier `a_trier/` que je vais créer : je m'en occupe à chaque session. »
 
-Si oui, propose le module « rapprochement bancaire » :
-
-> Plus tard, je pourrai relier chaque facture à son paiement en interrogeant votre banque en lecture seule : jamais d'écriture, jamais de virement, c'est une règle absolue. La clé d'accès vivra en dehors de votre dossier documentaire, dans un fichier que vous créerez vous-même : je ne vous la demanderai jamais dans notre conversation et je ne la lirai jamais. Ma recommandation : configurons-le après la première indexation complète.
-
-Note comme « module en attente ». Si l'utilisateur ne sait pas si sa banque a une API : note « à vérifier ».
-
-### P1.5 La cartographie des documents (question la plus importante)
-
-> Aujourd'hui, où vivent vos documents ? Prenons les lieux un par un.
-
-Déroule dans l'ordre, un lieu par message :
-1. **Dossiers sur l'ordinateur** : chemins exacts. Si l'utilisateur ne sait pas donner un chemin (c'est normal), aide-le : proposer de glisser le dossier dans la fenêtre de conversation (le chemin s'y colle tout seul, sur Mac comme sur Windows), ou proposer de chercher toi-même les dossiers candidats (Documents, Bureau, Téléchargements, dossiers cloud) et les lui faire reconnaître par leur nom.
-2. **Cloud** (OneDrive, Google Drive, Dropbox…) : chemins des dossiers synchronisés sur la machine. Pose l'avertissement en langage courant : « Ces services ne gardent parfois qu'un aperçu des fichiers sur l'ordinateur, le contenu restant dans le nuage. Au moment de la lecture, je vous indiquerai comment forcer le téléchargement des dossiers concernés (un clic droit suffit). »
-3. **Boîtes mail** : je ne lis pas les boîtes mail. Ma recommandation : exporter les pièces jointes importantes en PDF dans un dossier de dépôt au fil de l'eau ; nous créerons le dossier `a_trier/` exprès pour cela.
-4. **Papier** : ma recommandation : une application de scan sur téléphone, et les PDF déposés dans `a_trier/`.
-
-**Ne compte encore rien** : la question suivante doit venir d'abord.
+**Ne compte encore rien** dans les dossiers retenus : la question suivante doit venir d'abord.
 
 ### P1.6 Les dossiers exclus, puis le comptage
 
-> Y a-t-il des dossiers que je ne dois JAMAIS ouvrir, quoi qu'il arrive ?
+> Y a-t-il, dans ces dossiers ou ailleurs, des dossiers que je ne dois JAMAIS ouvrir, quoi qu'il arrive ?
 
-Ma recommandation : dossier médical, documents personnels sensibles, dossiers de tiers soumis au secret professionnel. Note les chemins exacts.
+Ma recommandation : dossier médical, documents personnels sensibles, dossiers de tiers soumis au secret professionnel. Note les chemins exacts. « Aucun » est une réponse.
 
-Une fois les exclusions connues (et seulement alors), fais pour chaque lieu déclaré, avec l'accord de l'utilisateur, un **comptage en lecture seule** : nombre de fichiers, volume total, années visibles dans les noms de dossiers, sans jamais entrer dans un dossier exclu. Restitue-le : c'est la première démonstration concrète de ce que tu sais faire, et cela servira à estimer la durée de l'indexation.
+Une fois les exclusions connues (et seulement alors), fais pour chaque lieu retenu un **comptage en lecture seule**, sans demander l'autorisation (c'est un comptage, pas une lecture, et l'utilisateur vient de désigner ces dossiers) : nombre de fichiers, volume total, années visibles dans les noms de dossiers, sans jamais entrer dans un dossier exclu. Restitue-le : c'est la première démonstration concrète de ce que tu sais faire, et cela servira à estimer la durée de l'indexation.
 
-### P1.7 Les types de documents
+### P1.7 Les types de documents : pas de question
 
-Propose une liste à cocher (jamais de question ouverte à blanc) :
-
-> Parmi ces types de documents, lesquels recevez-vous ? Factures d'achat · factures de vente · relevés bancaires · contrats · bulletins de paie · documents fiscaux (TVA, impôt sur les sociétés, CFE…) · documents sociaux (URSSAF, retraite, mutuelle…) · statuts et procès-verbaux · baux et actes · attestations d'assurance · autres (précisez).
+Ne demande pas à l'utilisateur quels types de documents il reçoit : beaucoup ne sauraient pas répondre, et tu les découvriras toi-même en lisant ses documents pendant le calibrage (P3.2). C'est à ce moment-là que tu lui restitueras, en langage courant, les types rencontrés (factures d'achat, factures de vente, relevés bancaires, bulletins de paie, documents fiscaux ou sociaux, statuts et procès-verbaux, baux, attestations d'assurance, devis…) et que tu compléteras `CONTEXTE_SOCIETES.md` et `REGLES_CLASSEMENT.md` avec son accord.
 
 ### P1.8 La racine documentaire définitive
 
@@ -264,13 +249,13 @@ Explique en une phrase le principe :
 
 > Tout va vivre dans un seul dossier racine qui contient toutes vos structures : c'est cette vue d'ensemble qui me permet de router chaque document vers la bonne société et de tenir un index unique.
 
-Propose un emplacement, en repartant du cas retenu en P0.8 : le dossier courant s'il est vide ou s'il contient déjà plusieurs sociétés (cas A et D) ; le dossier parent si l'utilisateur l'a choisi au cas C ; sinon le dossier principal existant d'après la cartographie, un chemin simple type `Documents/Entreprise`, ou le dossier cloud si tout y est déjà. Ma recommandation : si les documents sont déjà majoritairement dans un cloud sauvegardé, y rester. Fais valider le chemin exact, et rappelle que toutes les sessions suivantes s'ouvriront dans ce dossier.
+Propose un emplacement, en repartant du cas retenu en P0.8 : le dossier courant s'il est vide ou s'il contient déjà plusieurs sociétés (cas A et D) ; le dossier parent si l'utilisateur l'a choisi au cas C ; sinon le dossier principal existant d'après la cartographie, un chemin simple type `Documents/Entreprise`, ou le dossier cloud si tout y est déjà. Ma recommandation : si les documents sont déjà majoritairement dans un cloud sauvegardé, y rester. Une seule validation, avec l'outil de question à choix : « Oui, ici », « Un autre dossier ». Rappelle que toutes les sessions suivantes s'ouvriront dans ce dossier.
 
 Si la racine choisie est à l'intérieur d'une source déclarée (ou l'inverse), dis-le et ajuste la cartographie avec l'utilisateur pour que les périmètres soient disjoints : aucun fichier ne doit être couvert par deux sources, et les fichiers du kit installés à la racine ne seront jamais indexés (le scan les ignore d'office).
 
 ### P1.9 Validation de l'entretien
 
-Restitue tout : une fiche par structure (nom, forme, SIREN, clôture, banque et comptes, comptabilité), le tableau de cartographie (lieu, volume compté, exclu ou non), les modules en attente, la racine choisie. Fais valider section par section. Corrige ce qui doit l'être. Quand tout est validé, passe en P2.
+Restitue tout en un seul message : une fiche par structure (nom, forme, SIREN, clôture, comptabilité), le tableau de cartographie (lieu, volume compté, exclu ou non), la racine choisie. Puis **une seule validation**, avec l'outil de question à choix : « Tout est bon », « Corriger quelque chose ». Corrige ce qui doit l'être, et repose la même validation. Quand tout est validé, passe en P2.
 
 ---
 
@@ -289,7 +274,7 @@ Présente le plan à l'utilisateur **en langage courant, sans aucun terme techni
 7. Création de `_corbeille/` à la racine, avec dedans la copie de `arborescence/_corbeille/README.md` du kit (le script `corbeille.py` le recrée de lui-même s'il manque).
 
 8. Création des dossiers de chaque structure : `a_trier/`, `a_valider/`, `a_supprimer/`, `archives/`, `01_Societe/`, `02_Comptabilite/` (l'arborescence fine viendra en P5, fondée sur le corpus réel). Copier dans chacun des quatre dossiers de travail le README explicatif du kit (`arborescence/VOTRE_SOCIETE/<dossier>/README.md`).
-9. Création de la base : exécution de `00_CONTEXTE/_scripts/init_bdd.py` avec la commande Python retenue en P0.6, puis insertion des structures (table `entites`), des lieux de la cartographie (table `sources`), des comptes (table `comptes_bancaires`, IBAN jamais stocké en entier), et de l'état (table `meta` : `racine`, `version_kit`, `phase_installation = P3`). **C'est le seul endroit de tout ce fichier où `phase_installation` est écrit à l'installation** : ne le réécris pas plus loin.
+9. Création de la base : exécution de `00_CONTEXTE/_scripts/init_bdd.py` avec la commande Python retenue en P0.6, puis insertion des structures (table `entites`), des lieux de la cartographie (table `sources`), et de l'état (table `meta` : `racine`, `version_kit`, `phase_installation = P3`). **C'est le seul endroit de tout ce fichier où `phase_installation` est écrit à l'installation** : ne le réécris pas plus loin.
 10. **Test de la corbeille**, adapté au mode détecté en P0.6, et c'est l'utilisateur qui constate, pas toi :
     - crée un fichier témoin (par exemple `temoin-corbeille.txt`, contenant une ligne quelconque) ;
     - mets-le en corbeille avec `00_CONTEXTE/_scripts/corbeille.py` ; la sortie du script dit quelle corbeille a été utilisée et où le fichier est parti ;
@@ -358,7 +343,7 @@ Interroge la base et regroupe ce qui n'a pas pu être résolu par les documents.
 - les émetteurs fréquents non identifiés (« 47 documents de "SARL Dupont" : est-ce un fournisseur, un client, autre chose ? ») ;
 - les documents hésitant entre deux structures ;
 - les années creuses (« je ne trouve presque rien en 2022 : trou réel, ou une source oubliée ? ») ;
-- les comptes bancaires vus dans les relevés mais non déclarés à l'entretien ;
+- les banques et les comptes vus dans les relevés : fais-les confirmer, puis enregistre-les (table `comptes_bancaires`, IBAN jamais stocké en entier) et complète `CONTEXTE_SOCIETES.md` ;
 - les « à vérifier » restants de P1 (forme juridique, clôture, API bancaire…) ;
 - les échéances repérées dans les documents (dates de clôture, déclarations récurrentes) : propose de les enregistrer dans la table `echeances`.
 
@@ -412,7 +397,7 @@ Compte rendu final chiffré : classés, en a_valider, en a_supprimer, en corbeil
 
 1. Explique le quotidien : l'utilisateur dépose tout nouveau document dans le `a_trier/` de la structure concernée (ou de n'importe laquelle s'il hésite) ; la commande `traiter-a-trier` fait le reste ; il tranche de temps en temps les `a_valider/` ; le journal garde trace de tout.
 2. Fais le tour des commandes disponibles (chacune a sa fiche dans `00_CONTEXTE/commandes/`) : `traiter-a-trier`, `rechercher`, `point-etat`, `reprendre`, `echeances`, `preparer-comptable`, `indexer`, `verifier`, `rapprocher` (si module banque actif), `mettre-a-jour`. Explique comment on les appelle **avec son assistant à lui** : `/traiter-a-trier` dans Claude Code et dans Gemini CLI, `$traiter-a-trier` dans Codex, et une simple phrase en langage courant partout ailleurs (Claude Cowork, ChatGPT desktop) : « traite mes documents à trier ». Le résultat est le même dans tous les cas, parce que les trois formats renvoient à la même fiche.
-3. Propose d'activer les **modules en attente** notés en P1 : rapprochement bancaire (`.kit/modules/banque/MODULE.md`), cabinet en ligne (`.kit/modules/chrome-comptable/MODULE.md`, Claude Code uniquement), et rappelle que l'enrichissement légal (`.kit/modules/enrichissement-legal/MODULE.md`) peut resservir pour toute nouvelle structure. Chaque module a son mode d'emploi que tu suivras le moment venu. Ma recommandation : un module à la fois, quand le besoin se fait sentir.
+3. Propose les **modules** d'après ce que l'indexation a montré : le rapprochement bancaire (`.kit/modules/banque/MODULE.md`) si une banque vue dans les relevés propose un accès pour logiciels en lecture seule (Qonto, par exemple), en précisant que la clé d'accès vivra hors du dossier documentaire et ne sera jamais demandée dans la conversation ; le cabinet en ligne (`.kit/modules/chrome-comptable/MODULE.md`, Claude Code uniquement) si l'utilisateur se connecte à une interface de son cabinet (Dougs, Indy, Pennylane, Cegid…) ; et rappelle que l'enrichissement légal (`.kit/modules/enrichissement-legal/MODULE.md`) peut resservir pour toute nouvelle structure. Chaque module a son mode d'emploi que tu suivras le moment venu. Ma recommandation : un module à la fois, quand le besoin se fait sentir.
 4. Explique la mise à jour : « De temps en temps, demandez-moi de mettre le kit à jour : je comparerai votre version à la version publiée, je vérifierai que chaque fichier récupéré correspond bien à son empreinte publiée, et je vous raconterai ce qui a changé avant de rien toucher. Vos réglages et vos règles adaptées ne sont jamais remplacés. » Donne-lui la forme exacte pour son assistant (`/mettre-a-jour`, `$mettre-a-jour`, ou la phrase).
 5. Termine par où trouver de l'aide : [dgu-consulting.fr](https://www.dgu-consulting.fr), l'article de référence sur [le blog](https://www.dgu-consulting.fr/blog/assistant-documentaire-ia), et un Point IT de 30 minutes offert ([réserver un créneau](https://calendly.com/serdar-arikan-dgu-consulting/30min)).
 

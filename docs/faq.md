@@ -20,6 +20,10 @@ Toujours à la racine de votre dossier documentaire : le dossier unique qui cont
 
 Un abonnement d'entrée de gamme chez l'éditeur de votre assistant (de l'ordre de 20 euros par mois, Claude Pro par exemple) suffit pour un usage courant après le premier passage. Choisissez le modèle le plus capable de votre abonnement : la qualité de lecture des documents en dépend beaucoup (avec Claude, Opus ou supérieur, commande `/model`). Pour traiter un très gros historique plus vite, un palier supérieur accélère le premier mois, puis vous pouvez redescendre.
 
+## L'assistant dit qu'un script du kit a été refusé, ou il répond « à la place » du script ?
+
+C'est le mode de permissions de Claude Code. En mode par défaut, l'assistant vous demande votre accord avant chaque commande et tout se passe bien. En mode « auto », il décide seul et refuse d'exécuter un script qu'il vient de télécharger : il cherche alors un contournement, ce qui n'est pas ce qu'on veut. Regardez la ligne du bas de la fenêtre : si elle affiche « auto mode », appuyez sur `shift+tab` jusqu'à revenir au mode par défaut, puis dites « relance ».
+
 ## Ça marche avec quel assistant ?
 
 Six parcours : Claude Code en terminal, l'application Claude onglet « Code », l'application Claude onglet « Cowork », Codex, ChatGPT sur ordinateur, et Gemini CLI. La même phrase de démarrage fonctionne partout, chaque assistant lit son propre fichier d'instructions, et le résultat sur votre disque est identique. Le pas à pas de chacun est dans [INSTALLATION.md](../INSTALLATION.md).

@@ -85,4 +85,4 @@ Base SQLite locale `00_CONTEXTE/index.db` : fiche par fichier (chemin, empreinte
 
 ## Format des réponses
 
-Français, court et exploitable. Si pertinent : 1) réponse, 2) faits confirmés, 3) hypothèses, 4) points à vérifier, 5) documents sources, 6) action recommandée, 7) le cas échéant, question à poser au cabinet comptable.
+Français, court et exploitable. Toute question fermée (oui ou non, choix dans une liste, validation d'un plan) passe par l'outil de question à choix de l'assistant quand il existe (menu à sélectionner dans Claude Code, quatre choix au plus par question) ; les questions ouvertes restent en texte libre. Si pertinent : 1) réponse, 2) faits confirmés, 3) hypothèses, 4) points à vérifier, 5) documents sources, 6) action recommandée, 7) le cas échéant, question à poser au cabinet comptable.
