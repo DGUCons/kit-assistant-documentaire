@@ -55,7 +55,7 @@ class BaseTemporaire(unittest.TestCase):
                         ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
         self._bdd_origine = bdd.CHEMIN_BDD
         bdd.CHEMIN_BDD = self.racine / "00_CONTEXTE" / "index.db"
-        sans_bruit(init_bdd.main)
+        sans_bruit(init_bdd.main, [])
         self.conn = bdd.connexion()
         bdd.meta_ecrire(self.conn, "racine", str(self.racine))
         self.conn.commit()
@@ -572,7 +572,7 @@ class TestConfiguration(unittest.TestCase):
         origine = bdd.CHEMIN_BDD
         bdd.CHEMIN_BDD = dossier / "index.db"
         try:
-            sans_bruit(init_bdd.main)
+            sans_bruit(init_bdd.main, [])
             if os.name != "nt":
                 mode = bdd.CHEMIN_BDD.stat().st_mode & 0o777
                 self.assertEqual(0o600, mode, f"droits trop larges : {oct(mode)}")

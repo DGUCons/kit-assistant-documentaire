@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.1.7 (2026-09-12)
+
+- Contrôle qualité interne du kit remis d'aplomb : la batterie de tests se relance entièrement, par toutes les voies habituelles. Rien ne change pour vous, ni à l'installation ni à l'usage
+
 ## v2.1.6 (2026-09-12)
 
 Corrections tirées du parcours complet rejoué avec Codex, de bout en bout, sur le même corpus de test que Claude Code.

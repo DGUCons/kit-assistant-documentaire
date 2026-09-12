@@ -187,11 +187,14 @@ def migration_2(conn: sqlite3.Connection) -> None:
 MIGRATIONS = {2: [migration_2]}
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
+    # `argv` reste None en ligne de commande (argparse lit alors sys.argv) ;
+    # un appelant Python passe [] pour que les arguments du programme hôte,
+    # un lanceur de tests par exemple, ne soient pas pris pour les siens.
     sortie.configurer()
     argparse.ArgumentParser(
         description="Crée la base 00_CONTEXTE/index.db (ou applique les migrations de schéma si elle existe)."
-    ).parse_args()
+    ).parse_args(argv)
     creation = not bdd.CHEMIN_BDD.exists()
     conn = bdd.connexion(creer=True)
     # executescript() valide la transaction en cours : jamais dans un bloc `with conn`.

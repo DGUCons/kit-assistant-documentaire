@@ -11,14 +11,14 @@
 # Une empreinte `-` : seule la presence du fichier est verifiee.
 
 kit  3b7eaf37a7c89647e3303a32f6b3ef5f2ffff19a217104773aa87a24e8853b4a  .gitignore
-kit  67b9e2a90cffd3cc60fa478b08645b1e21cbb537e7e8d9ee81fa621773cbd03a  CHANGELOG.md
+kit  5179b98c264068297cafacc36bca99e8cf886062b9e3796f8f09e4e295655a07  CHANGELOG.md
 kit  68d391d840fa3d8e80aa2562c45309b74265dc4a6cc84c75c10c1a8d81fa77ba  DEMARRAGE.md
 kit  571cd0f453bcefd7b89c4d98a539f85a177443dd1ff2f9f5a1391ccee173b855  INSTALLATION.md
 kit  791bb5d4d46f30f8d50b3ca04dae52b6e68862c1a0c7a653832568e4cf12ebbc  LICENSE
 kit  -  MANIFESTE.txt
 kit  822f77fe7585a16deeb40d640bacc80c8f438787684e720c61b9f9a3545b9b58  README.md
 kit  9538bf2f41f5e140c91944e36b0796731da0e58f2b555d75a83fd0456efce9e8  START.md
-kit  19a00f85e6f2a32901ace7a70ceb9eb39d15a1f9ecee68ad0ea62b46f7e3460c  VERSION
+kit  6078262e31ddd481891e755708940cf065ddc50570c601e040d352db4a69c48e  VERSION
 kit  60f56ec9208e28d84579f892c075cf9c5f95044ea1448ed4fbe22f69ee1012c7  arborescence/VOTRE_SOCIETE/a_supprimer/README.md
 kit  2500c5618dbfb20ebfd3a96151733a17b713b3810f04929c1f148ca990bc28ba  arborescence/VOTRE_SOCIETE/a_trier/README.md
 kit  f21352fedcab5f60afd19a52ec8545534b121a4e04060d4428beb791d8e0412c  arborescence/VOTRE_SOCIETE/a_valider/README.md
@@ -85,11 +85,11 @@ kit  8aa546e017fb9019a11779a3e916d3b48c5b348b7551ffb2de3b3414bc563015  modele/OU
 kit  5de757710872cbe0dafa907d653914999c3ffc18b88b859a6c013bf384a705fb  modele/_scripts/bdd.py
 kit  ca7f8bfaa2321a541fcebdf1f1c98e4f36ab160893c4ff6c6bd5d31c9afe6b1a  modele/_scripts/corbeille.py
 kit  1bd792bd9bb59f84d89c119d2cc7cd1ae1b982a3be1ab886bf14033e967544e2  modele/_scripts/extraire_texte.py
-kit  9d4544959cd5832807c7b509b4762233c8a06264ec642a0429ee81f6f9d101f1  modele/_scripts/init_bdd.py
+kit  6604e1421245d8e03cfa8a7c5d978ad301a58df698ff7fedc200b65e20984958  modele/_scripts/init_bdd.py
 kit  babf56fdb03b85a700babe26ff2a63479ed1fd5070d0c24ed0aafd69ee81a859  modele/_scripts/requirements.txt
 kit  d6d2356ebf9384114cffa9003f66da6dc486248ddd5024b6726f6e985f3fff05  modele/_scripts/scan.py
 kit  f8a5b1bc0b124fda0de39d64549114421bb0206b266f009cf90662cc3dd73e88  modele/_scripts/sortie.py
-kit  091af6bf83721fd42f45cd98505ce03ca86829e8c9aced284e15d9a14a1738a0  modele/_scripts/tests_scripts.py
+kit  96ce859f3e1a910ee71201dac40aa12ce9f53f25a01a57a48a9c9c6a8de058d9  modele/_scripts/tests_scripts.py
 kit  9a1b1ed09c4bd4f39713a5e7b2112555fd3faf82aed7507ce9a20a6837761716  modele/_scripts/verifier.py
 kit  96ee0c0873343c1495244bb13f7bb62805ae084b61b76f7de66843f81b8cefaa  modules/banque/MODULE.md
 kit  2183a9e2c533d6fefb64b364efb4c6188155afcdf166386c2c4803db5578229c  modules/banque/qonto_lecture.py
