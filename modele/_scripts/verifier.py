@@ -50,10 +50,13 @@ def main() -> None:
         doublons += 1
         print(f"  {ligne['n']} exemplaires : {ligne['chemins']}")
 
+    # Un document « general » n'est rattaché à aucune structure, par décision de
+    # l'utilisateur (P4) : son entite_id vide est normal, pas une fiche incomplète.
     print("--- Fiches marquées lues mais incomplètes ---")
     for ligne in conn.execute(
         "SELECT id, chemin FROM fichiers WHERE contenu_lu = 1 AND supprime = 0"
-        " AND (resume IS NULL OR type_document IS NULL OR entite_id IS NULL)"
+        " AND (resume IS NULL OR type_document IS NULL"
+        "      OR (entite_id IS NULL AND statut_classement != 'general'))"
     ):
         anomalies += 1
         print(f"  incomplète : [{ligne['id']}] {ligne['chemin']}")
@@ -61,11 +64,13 @@ def main() -> None:
     print("--- Statuts incohérents ---")
     for ligne in conn.execute(
         "SELECT id, chemin, statut_classement, contenu_lu FROM fichiers WHERE supprime = 0"
-        " AND statut_classement IN ('indexe', 'classe')"
+        " AND statut_classement IN ('indexe', 'classe', 'general')"
     ):
-        classe_en_transit = (ligne["statut_classement"] == "classe"
-                             and dans_un_dossier_de_transit(ligne["chemin"]))
-        if classe_en_transit or not ligne["contenu_lu"]:
+        # Un document rangé (« classe ») ou laissé en place sans structure
+        # (« general ») n'a rien à faire dans un dossier de transit.
+        range_en_transit = (ligne["statut_classement"] in ("classe", "general")
+                            and dans_un_dossier_de_transit(ligne["chemin"]))
+        if range_en_transit or not ligne["contenu_lu"]:
             anomalies += 1
             print(f"  [{ligne['id']}] {ligne['statut_classement']} : {ligne['chemin']}")
 
@@ -82,7 +87,8 @@ def main() -> None:
     if doublons:
         print(f"\n{doublons} groupe(s) de doublons d'empreinte (attendu pendant l'indexation, à traiter en P5).")
     if anomalies:
-        print(f"{anomalies} anomalie(s) : à traduire en langage simple et à proposer une par une.")
+        print(f"{anomalies} anomalie(s) : à traduire en langage simple, en un seul tableau,"
+              " puis une seule question (tout corriger, ou reprendre une par une).")
         sys.exit(1)
     print("Aucune anomalie : la base et le disque sont cohérents.")
 

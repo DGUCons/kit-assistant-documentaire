@@ -378,6 +378,42 @@ class TestVerifier(BaseTemporaire):
         resultat = self.lancer()
         self.assertNotIn("societe_a_trier_2024", resultat.stdout.split("--- Statuts")[-1])
 
+    def test_document_general_sans_structure_n_est_pas_une_fiche_incomplete(self):
+        """Un document « general » n'a volontairement aucune structure : pas d'anomalie."""
+        note = self.dossier_docs("docs", ("note.txt",)) / "note.txt"
+        self.inscrire(note, statut_classement="general", contenu_lu=1,
+                      resume="note de reunion", type_document="note", entite_id=None)
+        resultat = self.lancer()
+        self.assertEqual(0, resultat.returncode, resultat.stdout)
+        self.assertNotIn("note.txt", resultat.stdout)
+
+    def test_document_indexe_sans_structure_reste_signale(self):
+        """Non-regression : sans decision de l'utilisateur, l'absence de structure reste un oubli."""
+        note = self.dossier_docs("docs", ("oubli.txt",)) / "oubli.txt"
+        self.inscrire(note, statut_classement="indexe", contenu_lu=1,
+                      resume="note", type_document="note", entite_id=None)
+        resultat = self.lancer()
+        self.assertIn("oubli.txt", resultat.stdout)
+        self.assertEqual(1, resultat.returncode)
+
+    def test_document_general_dans_un_dossier_de_transit_reste_signale(self):
+        """Un dossier de depot n'est pas une destination, meme pour un document general."""
+        note = self.dossier_docs("a_trier", ("note.txt",)) / "note.txt"
+        self.inscrire(note, statut_classement="general", contenu_lu=1,
+                      resume="note de reunion", type_document="note", entite_id=None)
+        resultat = self.lancer()
+        self.assertIn("note.txt", resultat.stdout.split("--- Statuts")[-1])
+        self.assertEqual(1, resultat.returncode)
+
+    def test_document_general_a_fiche_incomplete_reste_signale(self):
+        """Non-regression : le statut general dispense de structure, pas de type ni de resume."""
+        note = self.dossier_docs("docs", ("sans-type.txt",)) / "sans-type.txt"
+        self.inscrire(note, statut_classement="general", contenu_lu=1,
+                      resume="une note", type_document=None, entite_id=None)
+        resultat = self.lancer()
+        self.assertIn("sans-type.txt", resultat.stdout)
+        self.assertEqual(1, resultat.returncode)
+
     def test_un_vrai_dossier_a_trier_reste_signale(self):
         vrai = self.dossier_docs("a_trier", ("classe.pdf",)) / "classe.pdf"
         self.inscrire(vrai, statut_classement="classe", contenu_lu=1,

@@ -52,7 +52,11 @@ Le kit s'adapte : un seul dossier racine, une arborescence par structure dedans,
 
 ## Mes documents sont éparpillés (ordinateur, OneDrive, Google Drive, mails, papier)
 
-C'est prévu : l'entretien cartographie tous ces endroits, lieu par lieu, et l'indexation les couvre tous. Les mails ne sont pas lus : exportez les pièces jointes importantes en PDF dans le dossier de dépôt. Le papier se scanne (une application de téléphone suffit).
+C'est prévu : l'entretien cartographie tous ces endroits, lieu par lieu, et l'indexation les couvre tous. C'est vous qui désignez chaque dossier, en le glissant dans la fenêtre ou en tapant son chemin : l'assistant ne cherche jamais de lui-même sur votre disque ni dans vos clouds. Les mails ne sont pas lus : exportez les pièces jointes importantes en PDF dans le dossier de dépôt. Le papier se scanne (une application de téléphone suffit).
+
+## Une fenêtre en anglais s'est affichée, que faire ?
+
+Ce n'est pas l'assistant, c'est l'outil qui l'héberge : il demande l'autorisation de lire un dossier situé hors de votre dossier documentaire. Choisissez la première réponse. Depuis la version 2.1.5, l'installation inscrit vos dossiers de documents dans les réglages de Claude Code pour que cette fenêtre n'apparaisse plus. Avec un autre assistant, elle peut réapparaître : c'est son fonctionnement normal, et l'assistant vous l'annonce en français juste avant.
 
 ## Comment le kit se met-il à jour ?
 

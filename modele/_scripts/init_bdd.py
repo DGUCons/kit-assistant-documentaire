@@ -76,7 +76,8 @@ CREATE TABLE IF NOT EXISTS fichiers (
   resume                      TEXT,
   mots_cles                   TEXT,                  -- séparés par ;
   statut_classement           TEXT NOT NULL DEFAULT 'a_lire',
-    -- a_lire, indexe, classe, a_valider, a_supprimer, corbeille, illisible, non_disponible
+    -- a_lire, indexe, classe, general, a_valider, a_supprimer, corbeille, illisible, non_disponible
+    -- general : document lu qui ne releve d'aucune structure et reste a sa place, sur decision de l'utilisateur
   supprime                    INTEGER NOT NULL DEFAULT 0,  -- 1 = disparu du disque (jamais effacé en base)
   date_suppression            TEXT,
   chemin_corbeille            TEXT,                  -- où le fichier a été déposé par corbeille.py

@@ -12,7 +12,7 @@
 1. Vérifier que le module est actif (section « Modules actifs » des instructions permanentes).
 2. Lancer la synchronisation en lecture seule (`.kit/modules/banque/qonto_lecture.py` ou équivalent) : les nouvelles transactions arrivent dans la table `transactions` (l'identifiant côté banque évite tout doublon).
 3. Rapprocher automatiquement ce qui est sûr : montant exact + date proche + émetteur/libellé concordants → lier `transactions.fichier_id`, statut `rapproche`.
-4. Proposer les correspondances plausibles mais non certaines (statut `incertain`), une par une.
+4. Proposer les correspondances plausibles mais non certaines (statut `incertain`) **dans un seul tableau**, puis une seule question : « 1. Tout lier ainsi (ma recommandation) / 2. Les reprendre une par une ». Jamais une question par transaction sans que l'utilisateur ait choisi le pas à pas.
 5. Lister les transactions restées sans justificatif, groupées par contrepartie, avec la période.
 
 ## Restitution

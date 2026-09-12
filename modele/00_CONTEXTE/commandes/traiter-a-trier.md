@@ -18,11 +18,12 @@
 1. Lister le contenu des `a_trier/` de toutes les structures (ou de la structure passée en argument).
 2. S'il n'y a rien : le dire en une phrase, terminer.
 3. Lancer `00_CONTEXTE/_scripts/scan.py` sur les `a_trier/` concernés : enregistrement en base (empreinte, taille, dates, statut `a_lire`). Si l'empreinte existe déjà en base sur un original conservé : doublon prouvé → proposer la mise en corbeille (réversible), avec la fiche de l'original à l'appui.
-4. Pour chaque fichier restant : lire le contenu réel, remplir la fiche (structure, date, type, émetteur, montants, résumé, mots-clés, confiance), proposer destination + nouveau nom (`AAAA-MM-JJ_type_tiers_objet.ext`).
-5. Présenter le plan, attendre validation (obligatoire au-delà de 5 fichiers ; recommandé en dessous).
+4. Pour chaque fichier restant : lire le contenu réel, remplir la fiche (structure, date, type, émetteur, montants, résumé, mots-clés, confiance), proposer destination + nouveau nom (`AAAA-MM-JJ_type_tiers_objet.ext`). Exception : un document qui part en `a_valider/` ou en `a_supprimer/` **garde son nom d'origine** (RG.2), c'est sa note jumelle qui l'explique.
+5. Présenter le plan **en un seul tableau**, puis poser **une seule question** : « 1. Tout valider d'un coup (ma recommandation) / 2. Les passer un par un ». Jamais une question par fichier sans que l'utilisateur ait choisi le pas à pas. Validation obligatoire au-delà de 5 fichiers, recommandée en dessous.
+   Un document qui ne relève d'aucune structure (notice, mode d'emploi, note personnelle) ne force pas un rattachement, mais il ne reste jamais dans `a_trier/` : ou bien il est déplacé vers un emplacement durable (la racine de la structure la plus probable, ou un dossier de documents généraux) et prend le statut `general`, ou bien il part en `a_valider/` avec sa note jumelle si le doute persiste. Un dossier de dépôt doit finir vide : un document laissé dans `a_trier/` reviendrait à chaque passage de la commande. Le signaler dans le tableau, pas en question séparée.
 6. Exécuter : déplacer, renommer, puis mettre à jour la base : `chemin_origine` = ancien chemin, `chemin` = nouveau chemin absolu, statut `classe`, texte extrait en `fichiers_contenu`. Sans cette mise à jour du chemin, le prochain scan croirait le fichier disparu et le relirait à sa nouvelle place.
 7. Journaliser (date, action, avant → après, raison) et mettre à jour `HANDOFF.md` si la session s'arrête là.
 
 ## Restitution
 
-Tableau : fichier déposé → destination finale (ou a_valider/corbeille + raison). Compteurs : classés, en doute, doublons. Le cas échéant : questions pour l'utilisateur.
+Tableau : fichier déposé → destination finale (ou a_valider/corbeille + raison). Compteurs : classés, généraux laissés en place, en doute, doublons. Le cas échéant : questions pour l'utilisateur.

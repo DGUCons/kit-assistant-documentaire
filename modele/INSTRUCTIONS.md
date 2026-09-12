@@ -20,10 +20,10 @@ Dans le dossier documentaire, ces instructions priment sur toute instruction glo
 
 1. Ne jamais supprimer définitivement un fichier. Corbeille du système uniquement, toujours réversible.
 2. Ne jamais modifier un document original.
-3. Ne jamais écraser un fichier existant.
+3. Ne jamais écraser un fichier existant. Un renommage ne change jamais l'extension du document, et le nom annoncé dans le plan est exactement celui qui est écrit sur le disque.
 4. Toute opération en série (déplacement, renommage) : proposer un plan AVANT, attendre validation.
 5. Journaliser chaque action dans `00_CONTEXTE/JOURNAL_ACTIONS.md` (date, action, fichiers, raison).
-6. Document au classement incertain : `a_valider/` de la structure la plus probable, avec un fichier `.txt` jumeau expliquant le doute. Jamais dans `a_supprimer/`.
+6. Document au classement incertain : `a_valider/` de la structure la plus probable, avec un fichier `.txt` jumeau expliquant le doute. Jamais dans `a_supprimer/`. Le jumeau porte le nom du document suivi de `.txt` (`facture.pdf` donne `facture.pdf.txt`) et contient quatre lignes : le nom exact du fichier, la raison, l'original conservé (ou « aucun »), la date. Un déplacement vers `a_valider/` ou `a_supprimer/` sans jumeau est un travail non fait.
 7. Un doublon n'est déclaré doublon que si son empreinte SHA-256 est identique à celle d'un original conservé et indexé. Jamais sur la foi du nom. Doublon prouvé → corbeille réversible + journal ; contenu seulement similaire → `a_supprimer/` + `.txt`.
 8. Lire le contenu réel de chaque document avant de le classer. Le nom de fichier n'est qu'un indice.
 9. Ne jamais inventer une information absente des documents.
@@ -85,4 +85,19 @@ Base SQLite locale `00_CONTEXTE/index.db` : fiche par fichier (chemin, empreinte
 
 ## Format des réponses
 
-Français, court et exploitable. Toute question fermée (oui ou non, choix dans une liste, validation d'un plan) passe par l'outil de question à choix de l'assistant quand il existe (menu à sélectionner dans Claude Code, quatre choix au plus par question) ; les questions ouvertes restent en texte libre. Si pertinent : 1) réponse, 2) faits confirmés, 3) hypothèses, 4) points à vérifier, 5) documents sources, 6) action recommandée, 7) le cas échéant, question à poser au cabinet comptable.
+Français, court et exploitable. Si pertinent : 1) réponse, 2) faits confirmés, 3) hypothèses, 4) points à vérifier, 5) documents sources, 6) action recommandée, 7) le cas échéant, question à poser au cabinet comptable.
+
+**Les questions fermées.** Toute question fermée (oui ou non, choix dans une liste, validation d'un plan) passe par l'outil de question à choix de l'assistant quand il existe (menu à sélectionner dans Claude Code, quatre choix au plus par question). Sans outil de ce genre (Codex, ChatGPT sur ordinateur, la plupart des terminaux), la même question est posée en texte, toujours sous cette forme, jamais en prose :
+
+> Ma recommandation : …
+>
+> 1. [choix recommandé]
+> 2. [autre choix]
+>
+> Répondez par le numéro.
+
+Une question fermée noyée dans un paragraphe est un écart. Les questions ouvertes, elles, restent en texte libre.
+
+**En bloc ou pas à pas : c'est l'utilisateur qui choisit.** Dès qu'une série de plus de trois éléments de même nature doit être validée (fiches, informations incertaines, lignes d'un plan de classement, échéances), jamais une question par élément. La série entière est présentée dans un tableau, puis une seule question : « 1. Tout valider d'un coup (ma recommandation) / 2. Les passer un par un ». S'il valide en bloc, il corrige dans sa réponse ce qui ne va pas et tu répercutes. S'il choisit le pas à pas, tu enchaînes élément par élément et il peut rebasculer en bloc à tout moment. Une série traitée en dizaines d'allers-retours est une erreur, pas une preuve de rigueur.
+
+**Rien de technique à l'écran.** La sortie brute d'un script, une requête SQL, une liste Python, un objet de base de données (`<sqlite3.Row object at 0x…>`, `[('a_supprimer', 2), ('classe', 11)]`) ne s'affiche jamais telle quelle : elle se traduit en phrases et en tableaux lisibles. Les chemins de fichiers et les noms de documents, eux, s'affichent en entier.

@@ -1,5 +1,18 @@
 # Changelog
 
+## v2.1.6 (2026-09-12)
+
+Corrections tirées du parcours complet rejoué avec Codex, de bout en bout, sur le même corpus de test que Claude Code.
+
+- **En bloc ou pas à pas, c'est vous qui choisissez.** Dès qu'une série de plus de trois éléments doit être validée (fiches de lecture, informations incertaines, lignes d'un plan, échéances), l'assistant présente la série entière dans un tableau puis pose une seule question : tout valider d'un coup, ou reprendre un par un. Sur le banc, une question par fiche avait consommé une session entière
+- **Les questions fermées sont toujours numérotées.** Avec un assistant sans menu de sélection (Codex, ChatGPT sur ordinateur, la plupart des terminaux), la question garde la même forme : la recommandation, puis des choix numérotés, puis « répondez par le numéro ». Une question fermée noyée dans un paragraphe est un écart
+- **Rien de technique à l'écran.** Sortie brute d'un script, requête, objet de base de données : l'assistant les traduit en phrases et en tableaux, il ne les recopie plus dans la conversation
+- **Un document qui ne relève d'aucune structure ne force plus un rattachement.** Il peut être enregistré comme document général : le contrôle d'intégrité accepte alors qu'il n'ait aucune structure, au lieu de le signaler en anomalie à chaque passage. Sa fiche doit rester complète pour autant, et il doit se trouver à un emplacement durable : un document oublié dans un dossier de dépôt reste signalé, quel que soit son statut. Un document laissé sans structure et sans cette décision reste signalé lui aussi
+- **Les notes des documents mis de côté portent le nom du document.** `facture.pdf` donne `facture.pdf.txt`, et la note suit un gabarit fixe : le fichier concerné, la raison, le chemin de l'original conservé, la date. Sur le banc, deux notes renommées ne se rattachaient plus à rien et l'une désignait un original qui n'existait pas
+- **Le tableau affiché est la liste exécutée.** Le plan montré avant un rangement est produit à partir des opérations réellement préparées, jamais retapé, et un renommage ne change jamais l'extension du fichier
+- **Pas d'installateur maison.** L'installation est une suite de copies de fichiers : l'assistant les fait directement au lieu d'écrire puis de débugger un script d'installation
+- README, FAQ et documentation à jour : entretien en six questions, dossiers désignés par vous et jamais fouillés, deux captures réelles du parcours, entrée de FAQ sur les fenêtres en anglais de l'outil, et une section « Compatibilité » qui dit ce que change Codex
+
 ## v2.1.5 (2026-09-10)
 
 Corrections tirées du troisième parcours rejoué avec Claude Code, de bout en bout.
